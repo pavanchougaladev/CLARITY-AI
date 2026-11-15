@@ -1,0 +1,93 @@
+# ─────────────────────────────────────────────────────────────
+# ISRO Lunar Image Registration Pipeline — Default Configuration
+# ─────────────────────────────────────────────────────────────
+
+pipeline:
+  max_dim: 2048                    # Max image dimension for matcher (px)
+  use_tps: true                    # Thin-Plate Spline jitter correction
+  matcher: loftr                   # Primary matcher: loftr | lightglue | sift | roma | tiny_roma
+  outlier_threshold: 1.5           # MAGSAC++ reprojection threshold (px)
+  magsac_confidence: 0.999
+  magsac_max_iters: 10000
+  pyramid_levels: 3                # Coarse-to-fine Gaussian pyramid levels
+  enable_subpixel: true            # Sub-pixel phase-correlation refinement
+  subpixel_patch_size: 192         # Patch size for sub-pixel refinement (multi-patch 64/128/192)
+  subpixel_response_threshold: 0.05 # Minimum phase correlation response to accept shift
+  epipolar_filter: false           # Epipolar geometry / fundamental matrix constraint
+  epipolar_threshold_px: 2.0       # Epipolar distance tolerance in pixels
+  triplet_validation: false        # Multi-view triplet cycle-consistency check
+
+preprocessing:
+  clahe_clip_limit: 2.0
+  clahe_tile_size: [8, 8]
+  homomorphic_radius: 30
+  homomorphic_low_gain: 0.5       # Attenuation for low-frequency illumination
+
+photometric:
+  enabled: false                   # Auto-enabled when both PDS4 labels provide valid angles
+  model: hapke                     # hapke | lunar_lambert
+  target_incidence: 30.0
+  target_emission: 0.0
+  target_phase: 30.0
+  hapke:
+    w: 0.25                        # Single-scattering albedo
+    h_shoe: 0.07                   # Opposition surge width
+    B0: 1.6                        # Opposition surge amplitude
+  lunar_lambert:
+    L: 0.5                         # Mixing parameter
+
+sift_fallback:
+  nfeatures: 8000
+  ratio_threshold: 0.75           # Lowe's ratio test
+  ratio_threshold_secondary: 0.82 # Secondary pass with local affine consistency
+
+yolo11_crater:
+  model_path: models/yolo11_lunar_crater.pt
+  conf: 0.20
+  min_similarity: 0.35
+  include_rim_points: true
+
+
+export:
+  asp_format: true                 # ASP-compatible tie-point CSV
+  geotiff: true                    # Export warped result as GeoTIFF
+
+visualization:
+  max_draw_matches: 150            # Max matches to draw in visualization
+  density_grid: [8, 8]             # Grid dimensions for density heatmap
+  overlay_opacity: 0.5             # Default blend overlay opacity
+  checkerboard_tiles: 8            # Number of tiles per side
+
+logging:
+  level: INFO                      # DEBUG | INFO | WARNING | ERROR
+  log_to_file: true
+  log_dir: logs/
+
+history:
+  enabled: true
+  storage_file: registration_history.json
+  max_entries: 500
+
+# ── 3D Stereo / DEM Configuration ─────────────────────────────────────────
+# Controls real-world triangulation in dem_builder.py.
+# Set sensor: auto to select TMC vs OHRC based on image GSD.
+# Set baseline_m: 0 to auto-estimate from PDS4 label geometry.
+stereo:
+  sensor: tmc              # tmc | ohrc | iirs | auto
+  focal_length_mm: 20.0   # TMC-2 EFL: 20 mm  |  OHRC: 130 mm
+  pixel_size_um: 7.0       # TMC-2: 7 µm pixel pitch  |  OHRC: 5.5 µm
+  baseline_m: 44000.0     # TMC fore/aft surface baseline ≈ 44 km
+  gsd_m: 5.0               # TMC-2 nadir GSD ≈ 5 m/px  |  OHRC ≈ 0.25 m/px
+
+# ── Provenance & Integrity Chain ──────────────────────────────────────────
+provenance:
+  enabled: true
+  hash_algorithm: sha256
+
+# ── API Authentication & RBAC ─────────────────────────────────────────────
+auth:
+  enabled: false
+  secret_key_env: JWT_SECRET_KEY
+  token_expire_minutes: 60
+  users_file: users.json
+

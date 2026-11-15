@@ -1,0 +1,3232 @@
+[
+  {
+    "timestamp": 1787850420.195719,
+    "date": "2026-08-27 22:37:00",
+    "src_basename": "tmprb6997co.tif",
+    "ref_basename": "tmpcir30qbb.tif",
+    "method": "LoFTR",
+    "metrics": {
+      "rmse_pixels": 0.022698110911363596,
+      "weighted_rmse": 0.02254572914377354,
+      "inlier_ratio": 1.0,
+      "inlier_count": 7308,
+      "total_matches": 7308,
+      "coverage": 1.0
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true
+    }
+  },
+  {
+    "timestamp": 1787850500.58597,
+    "date": "2026-08-27 22:38:20",
+    "src_basename": "tmpysiojy9s.tif",
+    "ref_basename": "tmpifcwi_6l.tif",
+    "method": "LoFTR",
+    "metrics": {
+      "rmse_pixels": 0.022698110911363596,
+      "weighted_rmse": 0.02254572914377354,
+      "inlier_ratio": 1.0,
+      "inlier_count": 7308,
+      "total_matches": 7308,
+      "coverage": 1.0
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true
+    }
+  },
+  {
+    "timestamp": 1787850540.809744,
+    "date": "2026-08-27 22:39:00",
+    "src_basename": "tmp7ajudpxn.tif",
+    "ref_basename": "tmph6dekrgc.tif",
+    "method": "LoFTR",
+    "metrics": {
+      "rmse_pixels": 0.022698110911363596,
+      "weighted_rmse": 0.02254572914377354,
+      "inlier_ratio": 1.0,
+      "inlier_count": 7308,
+      "total_matches": 7308,
+      "coverage": 1.0
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true
+    }
+  },
+  {
+    "timestamp": 1787850667.1037781,
+    "date": "2026-08-27 22:41:07",
+    "src_basename": "tmp8dd_0xmx.tif",
+    "ref_basename": "tmpx_1r7v0g.tif",
+    "method": "LoFTR",
+    "metrics": {
+      "rmse_pixels": 0.022698110911363596,
+      "weighted_rmse": 0.02254572914377354,
+      "inlier_ratio": 1.0,
+      "inlier_count": 7308,
+      "total_matches": 7308,
+      "coverage": 1.0
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true
+    }
+  },
+  {
+    "timestamp": 1787850911.357412,
+    "date": "2026-08-27 22:45:11",
+    "src_basename": "ch1_tmc_ncn_20090529T1724252721_b_brw_apl.png",
+    "ref_basename": "ch1_tmc_ncn_20090529T1724252721_b_brw_apl.png",
+    "method": "LoFTR",
+    "metrics": {
+      "rmse_pixels": 0.13476342410584183,
+      "weighted_rmse": 0.11451274169288975,
+      "inlier_ratio": 1.0,
+      "inlier_count": 881,
+      "total_matches": 881,
+      "coverage": 0.375
+    },
+    "params": {
+      "max_dim": 2560,
+      "use_tps": true
+    }
+  },
+  {
+    "timestamp": 1787851013.8871949,
+    "date": "2026-08-27 22:46:53",
+    "src_basename": "ch1_tmc_ncn_20090529T1724252721_b_brw_apl.png",
+    "ref_basename": "ch1_tmc_ncn_20090529T1724252721_b_brw_apl.png",
+    "method": "LoFTR",
+    "metrics": {
+      "rmse_pixels": 0.13476342410584183,
+      "weighted_rmse": 0.11451274169288975,
+      "inlier_ratio": 1.0,
+      "inlier_count": 881,
+      "total_matches": 881,
+      "coverage": 0.375
+    },
+    "params": {
+      "max_dim": 2560,
+      "use_tps": true
+    }
+  },
+  {
+    "timestamp": 1787851019.505237,
+    "date": "2026-08-27 22:46:59",
+    "src_basename": "ch1_tmc_ncn_20090529T1724252721_b_brw_apl.png",
+    "ref_basename": "ch1_tmc_ncn_20090529T1724252721_b_brw_apl.png",
+    "method": "LoFTR",
+    "metrics": {
+      "rmse_pixels": 0.1235604126430431,
+      "weighted_rmse": 0.11578431327865978,
+      "inlier_ratio": 1.0,
+      "inlier_count": 524,
+      "total_matches": 524,
+      "coverage": 0.25
+    },
+    "params": {
+      "max_dim": 2304,
+      "use_tps": true
+    }
+  },
+  {
+    "timestamp": 1787852552.3301451,
+    "date": "2026-08-27 23:12:32",
+    "src_basename": "tmpj67cw55a.tif",
+    "ref_basename": "tmp73zhn8i0.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 362.8347473144531,
+      "weighted_rmse": 364.3251647949219,
+      "inlier_ratio": 0.2608695652173913,
+      "inlier_count": 6,
+      "total_matches": 23,
+      "coverage": 0.09375
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788025079.2395918,
+    "date": "2026-08-29 23:07:59",
+    "src_basename": "tmp8k9ljtxd.png",
+    "ref_basename": "tmp1nfgf6j0.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 1.707726001739502,
+      "weighted_rmse": 1.636466383934021,
+      "inlier_ratio": 0.08517350157728706,
+      "inlier_count": 27,
+      "total_matches": 317,
+      "coverage": 0.171875
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788025123.7348852,
+    "date": "2026-08-29 23:08:43",
+    "src_basename": "tmp4rverztg.png",
+    "ref_basename": "tmpcou16ixk.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 1.707726001739502,
+      "weighted_rmse": 1.636466383934021,
+      "inlier_ratio": 0.08517350157728706,
+      "inlier_count": 27,
+      "total_matches": 317,
+      "coverage": 0.171875
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788025201.924098,
+    "date": "2026-08-29 23:10:01",
+    "src_basename": "tmpoil3op5n.png",
+    "ref_basename": "tmpm5w4njfb.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 0.7550401091575623,
+      "weighted_rmse": 0.7299245595932007,
+      "inlier_ratio": 0.9194001874414246,
+      "inlier_count": 981,
+      "total_matches": 1067,
+      "coverage": 0.78125
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788025245.126514,
+    "date": "2026-08-29 23:10:45",
+    "src_basename": "tmp24zqozi0.png",
+    "ref_basename": "tmpz7m6aa30.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 0.7492761015892029,
+      "weighted_rmse": 0.7296780347824097,
+      "inlier_ratio": 0.9121370067014147,
+      "inlier_count": 1225,
+      "total_matches": 1343,
+      "coverage": 0.765625
+    },
+    "params": {
+      "max_dim": 2304,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788191153.018432,
+    "date": "2026-08-31 21:15:53",
+    "src_basename": "tmpu3sjkx1q.png",
+    "ref_basename": "tmpwufx66vv.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5099004507064819,
+      "weighted_rmse": 0.5110034346580505,
+      "inlier_ratio": 0.7223497016980266,
+      "inlier_count": 1574,
+      "total_matches": 2179,
+      "coverage": 0.53125,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788194599.9156811,
+    "date": "2026-08-31 22:13:19",
+    "src_basename": "tmp_hlwyh2x.png",
+    "ref_basename": "tmpdzkrnrcj.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5099004507064819,
+      "weighted_rmse": 0.5110034346580505,
+      "inlier_ratio": 0.7223497016980266,
+      "inlier_count": 1574,
+      "total_matches": 2179,
+      "coverage": 0.53125,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788197857.5612109,
+    "date": "2026-08-31 23:07:37",
+    "src_basename": "tmpzpdbdoak.tif",
+    "ref_basename": "tmp8vra1aq6.tif",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5198884010314941,
+      "weighted_rmse": 0.5185542106628418,
+      "inlier_ratio": 0.8318060892698788,
+      "inlier_count": 2814,
+      "total_matches": 3383,
+      "coverage": 0.9375,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788353836.0300422,
+    "date": "2026-09-02 18:27:16",
+    "src_basename": "tmpign2b9na.jpeg",
+    "ref_basename": "tmpizngdhr9.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 146.2396697998047,
+      "weighted_rmse": 109.85108184814453,
+      "inlier_ratio": 0.012303485987696514,
+      "inlier_count": 18,
+      "total_matches": 1463,
+      "coverage": 0.125,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788353958.747383,
+    "date": "2026-09-02 18:29:18",
+    "src_basename": "tmpgdkhwpc_.png",
+    "ref_basename": "tmpzmj90fy4.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 62.169960021972656,
+      "weighted_rmse": 66.2956771850586,
+      "inlier_ratio": 0.10198744769874477,
+      "inlier_count": 390,
+      "total_matches": 3824,
+      "coverage": 0.40625,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788354825.593421,
+    "date": "2026-09-02 18:43:45",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 8.127018928527832,
+      "weighted_rmse": 8.268887519836426,
+      "inlier_ratio": 0.14666666666666667,
+      "inlier_count": 132,
+      "total_matches": 900,
+      "coverage": 0.296875,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788355094.099831,
+    "date": "2026-09-02 18:48:14",
+    "src_basename": "tmphh765ikk.png",
+    "ref_basename": "tmprc8nh1sg.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.493791341781616,
+      "weighted_rmse": 2.0334300994873047,
+      "inlier_ratio": 0.09375,
+      "inlier_count": 54,
+      "total_matches": 576,
+      "coverage": 0.25,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788355135.9698079,
+    "date": "2026-09-02 18:48:55",
+    "src_basename": "tmp4aavrwtd.png",
+    "ref_basename": "tmpaqth2uug.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.502712070941925,
+      "weighted_rmse": 0.5036360025405884,
+      "inlier_ratio": 0.7332106715731371,
+      "inlier_count": 1594,
+      "total_matches": 2174,
+      "coverage": 0.515625,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788356300.086653,
+    "date": "2026-09-02 19:08:20",
+    "src_basename": "tmpkprrvk3o.png",
+    "ref_basename": "tmpe4qfqskn.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5099004507064819,
+      "weighted_rmse": 0.5110034346580505,
+      "inlier_ratio": 0.7223497016980266,
+      "inlier_count": 1574,
+      "total_matches": 2179,
+      "coverage": 0.53125,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788356410.601299,
+    "date": "2026-09-02 19:10:10",
+    "src_basename": "tmpldyadw4g.png",
+    "ref_basename": "tmpq3ph_6z9.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.493791341781616,
+      "weighted_rmse": 2.0334300994873047,
+      "inlier_ratio": 0.09375,
+      "inlier_count": 54,
+      "total_matches": 576,
+      "coverage": 0.25,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788356532.407857,
+    "date": "2026-09-02 19:12:12",
+    "src_basename": "tmpfp15ya0w.jpeg",
+    "ref_basename": "tmprkktp88w.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 0.04938271604938271,
+      "inlier_count": 4,
+      "total_matches": 81,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788357080.1498399,
+    "date": "2026-09-02 19:21:20",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 8.760428428649902,
+      "weighted_rmse": 8.665372848510742,
+      "inlier_ratio": 0.2280431432973806,
+      "inlier_count": 148,
+      "total_matches": 649,
+      "coverage": 0.21875,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788357323.01619,
+    "date": "2026-09-02 19:25:23",
+    "src_basename": "tmpvcukqrg5.png",
+    "ref_basename": "tmp3qx1sqp6.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5099004507064819,
+      "weighted_rmse": 0.5110034346580505,
+      "inlier_ratio": 0.7223497016980266,
+      "inlier_count": 1574,
+      "total_matches": 2179,
+      "coverage": 0.53125,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788357378.206625,
+    "date": "2026-09-02 19:26:18",
+    "src_basename": "tmphvw8m4lo.png",
+    "ref_basename": "tmpvxwohs4q.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5099004507064819,
+      "weighted_rmse": 0.5110034346580505,
+      "inlier_ratio": 0.7223497016980266,
+      "inlier_count": 1574,
+      "total_matches": 2179,
+      "coverage": 0.53125,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788462823.7193449,
+    "date": "2026-09-04 00:43:43",
+    "src_basename": "tmpb0wpxpra.png",
+    "ref_basename": "tmpanhqghql.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 10.668689727783203,
+      "weighted_rmse": 9.924348831176758,
+      "inlier_ratio": 0.21789084940500617,
+      "inlier_count": 531,
+      "total_matches": 2437,
+      "coverage": 0.453125,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788463011.123413,
+    "date": "2026-09-04 00:46:51",
+    "src_basename": "tmpuxrvm2ng.png",
+    "ref_basename": "tmpwlpi6eqd.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 0.19346706569194794,
+      "weighted_rmse": 0.19056792557239532,
+      "inlier_ratio": 0.8002421307506054,
+      "inlier_count": 661,
+      "total_matches": 826,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788463074.6259992,
+    "date": "2026-09-04 00:47:54",
+    "src_basename": "tmpww12bjmo.png",
+    "ref_basename": "tmpmr9q4j2p.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 3.5589184761047363,
+      "weighted_rmse": 3.015017032623291,
+      "inlier_ratio": 0.168141592920354,
+      "inlier_count": 38,
+      "total_matches": 226,
+      "coverage": 0.21875,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788463138.906506,
+    "date": "2026-09-04 00:48:58",
+    "src_basename": "tmp4dp2kk6m.png",
+    "ref_basename": "tmplsphysur.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 2.5584700107574463,
+      "weighted_rmse": 2.5274977684020996,
+      "inlier_ratio": 0.16129032258064516,
+      "inlier_count": 5,
+      "total_matches": 31,
+      "coverage": 0.0625,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788466937.810621,
+    "date": "2026-09-04 01:52:17",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 17.163110733032227,
+      "weighted_rmse": 14.582988739013672,
+      "inlier_ratio": 0.875,
+      "inlier_count": 35,
+      "total_matches": 40,
+      "coverage": 0.046875,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788466959.84337,
+    "date": "2026-09-04 01:52:39",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 0.9548979997634888,
+      "weighted_rmse": 0.9688718318939209,
+      "inlier_ratio": 0.7692307692307693,
+      "inlier_count": 30,
+      "total_matches": 39,
+      "coverage": 0.03125,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788466990.085386,
+    "date": "2026-09-04 01:53:10",
+    "src_basename": "ch1_tmc_ncn_20090529T0853239798_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "LOFTR",
+    "metrics": {
+      "rmse_pixels": 0.6397870779037476,
+      "weighted_rmse": 0.6258859634399414,
+      "inlier_ratio": 0.7317073170731707,
+      "inlier_count": 30,
+      "total_matches": 41,
+      "coverage": 0.03125,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788467997.64286,
+    "date": "2026-09-04 02:09:57",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 336.19598388671875,
+      "weighted_rmse": 290.5110778808594,
+      "inlier_ratio": 0.5641025641025641,
+      "inlier_count": 22,
+      "total_matches": 39,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788468631.444061,
+    "date": "2026-09-04 02:20:31",
+    "src_basename": "tmp5fl2bswd.png",
+    "ref_basename": "tmp9jfd_ki6.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 4.002948760986328,
+      "weighted_rmse": 3.1049606800079346,
+      "inlier_ratio": 0.10309278350515463,
+      "inlier_count": 10,
+      "total_matches": 97,
+      "coverage": 0.109375,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788468658.670367,
+    "date": "2026-09-04 02:20:58",
+    "src_basename": "tmp5xj1gc_o.png",
+    "ref_basename": "tmpcoiuqjwi.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.7031354904174805,
+      "weighted_rmse": 0.7040641903877258,
+      "inlier_ratio": 0.7141843971631205,
+      "inlier_count": 1007,
+      "total_matches": 1410,
+      "coverage": 0.71875,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788887672.7051158,
+    "date": "2026-09-08 22:44:32",
+    "src_basename": "tmp4m4wj4og.png",
+    "ref_basename": "tmppdufffw9.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.7031354904174805,
+      "weighted_rmse": 0.7040641903877258,
+      "inlier_ratio": 0.7141843971631205,
+      "inlier_count": 1007,
+      "total_matches": 1410,
+      "coverage": 0.71875,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788888984.628136,
+    "date": "2026-09-08 23:06:24",
+    "src_basename": "tmpovfypx4t.png",
+    "ref_basename": "tmpj07kydkj.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.557800054550171,
+      "weighted_rmse": 2.5829029083251953,
+      "inlier_ratio": 0.1597222222222222,
+      "inlier_count": 115,
+      "total_matches": 720,
+      "coverage": 0.421875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788947976.88021,
+    "date": "2026-09-09 15:29:36",
+    "src_basename": "tmpvlxs37ec.png",
+    "ref_basename": "tmp2s32u0xm.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.7031354904174805,
+      "weighted_rmse": 0.7040641903877258,
+      "inlier_ratio": 0.7141843971631205,
+      "inlier_count": 1007,
+      "total_matches": 1410,
+      "coverage": 0.71875,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788948041.005263,
+    "date": "2026-09-09 15:30:41",
+    "src_basename": "tmporpm2tby.png",
+    "ref_basename": "tmpn_r6aj1e.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.769843101501465,
+      "weighted_rmse": 2.822868824005127,
+      "inlier_ratio": 0.15489130434782608,
+      "inlier_count": 114,
+      "total_matches": 736,
+      "coverage": 0.421875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788950282.806377,
+    "date": "2026-09-09 16:08:02",
+    "src_basename": "tmpzpbkqcug.png",
+    "ref_basename": "tmp06bt9cqq.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.7031354904174805,
+      "weighted_rmse": 0.7040641903877258,
+      "inlier_ratio": 0.7141843971631205,
+      "inlier_count": 1007,
+      "total_matches": 1410,
+      "coverage": 0.71875,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788950360.6613529,
+    "date": "2026-09-09 16:09:20",
+    "src_basename": "tmp_vwhig5t.png",
+    "ref_basename": "tmpe23aw74e.png",
+    "method": "LOFTR (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.557800054550171,
+      "weighted_rmse": 2.5829029083251953,
+      "inlier_ratio": 0.1597222222222222,
+      "inlier_count": 115,
+      "total_matches": 720,
+      "coverage": 0.421875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "loftr"
+    }
+  },
+  {
+    "timestamp": 1788970199.053639,
+    "date": "2026-09-09 21:39:59",
+    "src_basename": "tmpydkg77iu.png",
+    "ref_basename": "tmp70_ghgu4.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 0.38461538461538464,
+      "inlier_count": 5,
+      "total_matches": 13,
+      "coverage": 0.03125,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788970220.993868,
+    "date": "2026-09-09 21:40:20",
+    "src_basename": "tmp5c34av2q.png",
+    "ref_basename": "tmpjreffk7s.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 0.38461538461538464,
+      "inlier_count": 5,
+      "total_matches": 13,
+      "coverage": 0.03125,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788970234.780386,
+    "date": "2026-09-09 21:40:34",
+    "src_basename": "tmpofrlcdnw.png",
+    "ref_basename": "tmpa1ddoowt.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 932,
+      "total_matches": 932,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788975963.856631,
+    "date": "2026-09-09 23:16:03",
+    "src_basename": "tmpzq5rnrir.png",
+    "ref_basename": "tmpk00gj70o.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 4.002948760986328,
+      "weighted_rmse": 3.1049606800079346,
+      "inlier_ratio": 0.10309278350515463,
+      "inlier_count": 10,
+      "total_matches": 97,
+      "coverage": 0.109375,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788975989.4803252,
+    "date": "2026-09-09 23:16:29",
+    "src_basename": "tmph0l69z69.png",
+    "ref_basename": "tmpklyge9_m.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5628741979598999,
+      "weighted_rmse": 0.5627975463867188,
+      "inlier_ratio": 0.8422053231939164,
+      "inlier_count": 1772,
+      "total_matches": 2104,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788976043.718653,
+    "date": "2026-09-09 23:17:23",
+    "src_basename": "tmpprj40xw4.png",
+    "ref_basename": "tmp6tf7wk4z.png",
+    "method": "TINY_ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.5628741979598999,
+      "weighted_rmse": 0.5627975463867188,
+      "inlier_ratio": 0.8422053231939164,
+      "inlier_count": 1772,
+      "total_matches": 2104,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "tiny_roma"
+    }
+  },
+  {
+    "timestamp": 1788980340.858171,
+    "date": "2026-09-10 00:29:00",
+    "src_basename": "tmpyn0ucko6.png",
+    "ref_basename": "tmp9ca3x9wl.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.557800054550171,
+      "weighted_rmse": 2.5829029083251953,
+      "inlier_ratio": 0.1597222222222222,
+      "inlier_count": 115,
+      "total_matches": 720,
+      "coverage": 0.421875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788980371.387649,
+    "date": "2026-09-10 00:29:31",
+    "src_basename": "tmpbhnp8t4v.png",
+    "ref_basename": "tmpq9k7b0z0.png",
+    "method": "TINY_ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.557800054550171,
+      "weighted_rmse": 2.5829029083251953,
+      "inlier_ratio": 0.1597222222222222,
+      "inlier_count": 115,
+      "total_matches": 720,
+      "coverage": 0.421875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "tiny_roma"
+    }
+  },
+  {
+    "timestamp": 1788980383.422227,
+    "date": "2026-09-10 00:29:43",
+    "src_basename": "tmp7us94vxp.png",
+    "ref_basename": "tmpwjzo6576.png",
+    "method": "TINY_ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.557800054550171,
+      "weighted_rmse": 2.5829029083251953,
+      "inlier_ratio": 0.1597222222222222,
+      "inlier_count": 115,
+      "total_matches": 720,
+      "coverage": 0.421875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "tiny_roma"
+    }
+  },
+  {
+    "timestamp": 1788980393.2614121,
+    "date": "2026-09-10 00:29:53",
+    "src_basename": "tmpze1ltzrc.png",
+    "ref_basename": "tmp2ve9djmg.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 0.38461538461538464,
+      "inlier_count": 5,
+      "total_matches": 13,
+      "coverage": 0.03125,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788980431.2054589,
+    "date": "2026-09-10 00:30:31",
+    "src_basename": "tmpt_066i2r.png",
+    "ref_basename": "tmp62pohy6x.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 2.557800054550171,
+      "weighted_rmse": 2.5829029083251953,
+      "inlier_ratio": 0.1597222222222222,
+      "inlier_count": 115,
+      "total_matches": 720,
+      "coverage": 0.421875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788980448.064777,
+    "date": "2026-09-10 00:30:48",
+    "src_basename": "tmprn4fqcfj.png",
+    "ref_basename": "tmp1lp0m5_8.png",
+    "method": "SIFT (Classical)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 0.38461538461538464,
+      "inlier_count": 5,
+      "total_matches": 13,
+      "coverage": 0.03125,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "sift"
+    }
+  },
+  {
+    "timestamp": 1788980508.221153,
+    "date": "2026-09-10 00:31:48",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 791,
+      "total_matches": 791,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788980524.823473,
+    "date": "2026-09-10 00:32:04",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.1082068607211113,
+      "weighted_rmse": 0.10820695757865906,
+      "inlier_ratio": 0.8315789473684211,
+      "inlier_count": 158,
+      "total_matches": 190,
+      "coverage": 0.25,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788980535.127645,
+    "date": "2026-09-10 00:32:15",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 791,
+      "total_matches": 791,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788980544.125727,
+    "date": "2026-09-10 00:32:24",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.1082068607211113,
+      "weighted_rmse": 0.10820695757865906,
+      "inlier_ratio": 0.8315789473684211,
+      "inlier_count": 158,
+      "total_matches": 190,
+      "coverage": 0.25,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788981226.90391,
+    "date": "2026-09-10 00:43:46",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 791,
+      "total_matches": 791,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788981247.6257029,
+    "date": "2026-09-10 00:44:07",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 103,
+      "total_matches": 103,
+      "coverage": 0.578125,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 768,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788981254.441282,
+    "date": "2026-09-10 00:44:14",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 2672,
+      "total_matches": 2672,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 4096,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788981268.753293,
+    "date": "2026-09-10 00:44:28",
+    "src_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_ncf_20090529T0853239926_b_brw_d18.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.07588152587413788,
+      "weighted_rmse": 0.07588107883930206,
+      "inlier_ratio": 0.8377693282636248,
+      "inlier_count": 2644,
+      "total_matches": 3156,
+      "coverage": 0.75,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 4096,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788981722.4952939,
+    "date": "2026-09-10 00:52:02",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "TINY_ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 336.19598388671875,
+      "weighted_rmse": 290.5110778808594,
+      "inlier_ratio": 0.5641025641025641,
+      "inlier_count": 22,
+      "total_matches": 39,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "tiny_roma"
+    }
+  },
+  {
+    "timestamp": 1788981733.357234,
+    "date": "2026-09-10 00:52:13",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "TINY_ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 336.19598388671875,
+      "weighted_rmse": 290.5110778808594,
+      "inlier_ratio": 0.5641025641025641,
+      "inlier_count": 22,
+      "total_matches": 39,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "tiny_roma"
+    }
+  },
+  {
+    "timestamp": 1788981740.252824,
+    "date": "2026-09-10 00:52:20",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 336.19598388671875,
+      "weighted_rmse": 290.5110778808594,
+      "inlier_ratio": 0.5641025641025641,
+      "inlier_count": 22,
+      "total_matches": 39,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1788981746.651608,
+    "date": "2026-09-10 00:52:26",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.2720198333263397,
+      "weighted_rmse": 0.2585330307483673,
+      "inlier_ratio": 0.8780487804878049,
+      "inlier_count": 72,
+      "total_matches": 82,
+      "coverage": 0.375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1788981756.633499,
+    "date": "2026-09-10 00:52:36",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "ROMA (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 336.19598388671875,
+      "weighted_rmse": 290.5110778808594,
+      "inlier_ratio": 0.5641025641025641,
+      "inlier_count": 22,
+      "total_matches": 39,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1789034030.741258,
+    "date": "2026-09-10 15:23:50",
+    "src_basename": "tmprdo1pq1b.tif",
+    "ref_basename": "tmpgiwew47x.tif",
+    "method": "ENSEMBLE (ROMA + LOFTR + SIFT)",
+    "metrics": {
+      "rmse_pixels": 0.20130555331707,
+      "weighted_rmse": 0.2012450248003006,
+      "inlier_ratio": 0.8736492103075644,
+      "inlier_count": 1051,
+      "total_matches": 1203,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "ensemble"
+    }
+  },
+  {
+    "timestamp": 1789034205.422187,
+    "date": "2026-09-10 15:26:45",
+    "src_basename": "tmpuqwmb3wv.tif",
+    "ref_basename": "tmpd7qenrx6.png",
+    "method": "ENSEMBLE (ROMA + LOFTR)",
+    "metrics": {
+      "rmse_pixels": 6.823938019806519e-05,
+      "weighted_rmse": 7.545327389379963e-05,
+      "inlier_ratio": 0.08333333333333333,
+      "inlier_count": 4,
+      "total_matches": 48,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "ensemble"
+    }
+  },
+  {
+    "timestamp": 1789034347.86754,
+    "date": "2026-09-10 15:29:07",
+    "src_basename": "tmp4__e90bw.tif",
+    "ref_basename": "tmp3p4dxmib.png",
+    "method": "ROMA",
+    "metrics": {
+      "rmse_pixels": 0.1536310315132141,
+      "weighted_rmse": 0.1608036458492279,
+      "inlier_ratio": 0.25,
+      "inlier_count": 5,
+      "total_matches": 20,
+      "coverage": 0.078125,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1789036308.85471,
+    "date": "2026-09-10 16:01:48",
+    "src_basename": "tmp7gm648_y.png",
+    "ref_basename": "tmps895qhk0.png",
+    "method": "ENSEMBLE (ROMA + LOFTR + SIFT)",
+    "metrics": {
+      "rmse_pixels": 0.23052795231342316,
+      "weighted_rmse": 0.2304466962814331,
+      "inlier_ratio": 0.8173581306628517,
+      "inlier_count": 1714,
+      "total_matches": 2097,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "ensemble"
+    }
+  },
+  {
+    "timestamp": 1789036413.412996,
+    "date": "2026-09-10 16:03:33",
+    "src_basename": "tmpw0z2b3l0.png",
+    "ref_basename": "tmpm5zcrvea.png",
+    "method": "ROMA",
+    "metrics": {
+      "rmse_pixels": 0.30975043773651123,
+      "weighted_rmse": 0.3096977472305298,
+      "inlier_ratio": 0.9235511713933415,
+      "inlier_count": 1498,
+      "total_matches": 1622,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1789036690.1010282,
+    "date": "2026-09-10 16:08:10",
+    "src_basename": "tmp1s5e8own.png",
+    "ref_basename": "tmp7f2pvqc1.png",
+    "method": "SIFT (Fallback from lightglue)",
+    "metrics": {
+      "rmse_pixels": 0.00038305032649077475,
+      "weighted_rmse": 0.00038305032649077475,
+      "inlier_ratio": 1.0,
+      "inlier_count": 1088,
+      "total_matches": 1088,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "lightglue"
+    }
+  },
+  {
+    "timestamp": 1789325223.372596,
+    "date": "2026-09-14 00:17:03",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "\ud83e\udd16 Autonomous [roma]",
+    "metrics": {
+      "rmse_pixels": 0.4583941400051117,
+      "weighted_rmse": 0.4583941698074341,
+      "inlier_ratio": 0.7038216560509554,
+      "inlier_count": 442,
+      "total_matches": 628,
+      "coverage": 0.4375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789325333.79746,
+    "date": "2026-09-14 00:18:53",
+    "src_basename": "tmpzy1a629c.png",
+    "ref_basename": "tmpuqflvhd1.png",
+    "method": "ROMA",
+    "metrics": {
+      "rmse_pixels": 0.2803243398666382,
+      "weighted_rmse": 0.2802659273147583,
+      "inlier_ratio": 0.9090346534653465,
+      "inlier_count": 1469,
+      "total_matches": 1616,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1789325530.621142,
+    "date": "2026-09-14 00:22:10",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "NI_LFM (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 1181.962646484375,
+      "weighted_rmse": 1181.635498046875,
+      "inlier_ratio": 1.0,
+      "inlier_count": 53,
+      "total_matches": 53,
+      "coverage": 0.125,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "ni_lfm"
+    }
+  },
+  {
+    "timestamp": 1789326007.9374442,
+    "date": "2026-09-14 00:30:07",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "\ud83e\udd16 Autonomous [roma]",
+    "metrics": {
+      "rmse_pixels": 0.24239687621593475,
+      "weighted_rmse": 0.24239687621593475,
+      "inlier_ratio": 0.6521739130434783,
+      "inlier_count": 420,
+      "total_matches": 644,
+      "coverage": 0.4375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789326650.991275,
+    "date": "2026-09-14 00:40:50",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "FUSION (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.4817720353603363,
+      "weighted_rmse": 0.4261108636856079,
+      "inlier_ratio": 0.5641025641025641,
+      "inlier_count": 22,
+      "total_matches": 39,
+      "coverage": 0.0625,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion"
+    }
+  },
+  {
+    "timestamp": 1789326709.838944,
+    "date": "2026-09-14 00:41:49",
+    "src_basename": "tmpkqmv9i6t.png",
+    "ref_basename": "tmpkj52u15e.png",
+    "method": "FUSION (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.6516548991203308,
+      "weighted_rmse": 0.6558855772018433,
+      "inlier_ratio": 0.7141843971631205,
+      "inlier_count": 1007,
+      "total_matches": 1410,
+      "coverage": 0.71875,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion"
+    }
+  },
+  {
+    "timestamp": 1789327742.378677,
+    "date": "2026-09-14 00:59:02",
+    "src_basename": "tmpx2se0gi2.tif",
+    "ref_basename": "tmpkg8f5_7s.tif",
+    "method": "FUSION (Tile-Based 3x3)",
+    "metrics": {
+      "rmse_pixels": 0.7010291218757629,
+      "weighted_rmse": 0.7008254528045654,
+      "inlier_ratio": 0.8426229508196721,
+      "inlier_count": 257,
+      "total_matches": 305,
+      "coverage": 0.625,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion"
+    }
+  },
+  {
+    "timestamp": 1789327920.9625778,
+    "date": "2026-09-14 01:02:00",
+    "src_basename": "tmp1012rwih.tif",
+    "ref_basename": "tmpyhqhirlu.tif",
+    "method": "ROMA",
+    "metrics": {
+      "rmse_pixels": 0.33744579553604126,
+      "weighted_rmse": 0.3373471796512604,
+      "inlier_ratio": 0.872093023255814,
+      "inlier_count": 825,
+      "total_matches": 946,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma"
+    }
+  },
+  {
+    "timestamp": 1789328236.874835,
+    "date": "2026-09-14 01:07:16",
+    "src_basename": "tmpiq0_r5zh.tif",
+    "ref_basename": "tmpu0wzblvw.tif",
+    "method": "Autonomous [roma]",
+    "metrics": {
+      "rmse_pixels": 0.3211434781551361,
+      "weighted_rmse": 0.3210467994213104,
+      "inlier_ratio": 0.8754171301446051,
+      "inlier_count": 787,
+      "total_matches": 899,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789416575.523461,
+    "date": "2026-09-15 01:39:35",
+    "src_basename": "ch1_tmc_nca_20090529T0853239926_b_brw_d18.png",
+    "ref_basename": "ch1_tmc_nca_20090529T1724252721_b_brw_apl.png",
+    "method": "OMNIROUTE [CONSENSUS] (SIFT)",
+    "metrics": {
+      "rmse_pixels": 2.5745866298675537,
+      "weighted_rmse": 2.6499133110046387,
+      "inlier_ratio": 0.797979797979798,
+      "inlier_count": 79,
+      "total_matches": 99,
+      "coverage": 0.390625,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "omniroute",
+      "strategy": "consensus"
+    }
+  },
+  {
+    "timestamp": 1789416727.4367082,
+    "date": "2026-09-15 01:42:07",
+    "src_basename": "tmpy6omnwu2.png",
+    "ref_basename": "tmpgyfbw6pm.png",
+    "method": "OMNIROUTE [CONSENSUS] (SIFT)",
+    "metrics": {
+      "rmse_pixels": 0.0001370456739095971,
+      "weighted_rmse": 0.0001370456739095971,
+      "inlier_ratio": 1.0,
+      "inlier_count": 644,
+      "total_matches": 644,
+      "coverage": 0.484375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "omniroute",
+      "strategy": "consensus"
+    }
+  },
+  {
+    "timestamp": 1789416810.085131,
+    "date": "2026-09-15 01:43:30",
+    "src_basename": "tmphxyb6we7.png",
+    "ref_basename": "tmp__ux8u16.png",
+    "method": "Autonomous [roma]",
+    "metrics": {
+      "rmse_pixels": 0.00018246169202029705,
+      "weighted_rmse": 0.00018246170657221228,
+      "inlier_ratio": 1.0,
+      "inlier_count": 897,
+      "total_matches": 897,
+      "coverage": 0.484375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789416979.25144,
+    "date": "2026-09-15 01:46:19",
+    "src_basename": "tmp70142ewd.png",
+    "ref_basename": "tmpr64rq5xl.png",
+    "method": "SIFT (Fallback from roma)",
+    "metrics": {
+      "rmse_pixels": 0.00018246169202029705,
+      "weighted_rmse": 0.00018246170657221228,
+      "inlier_ratio": 1.0,
+      "inlier_count": 897,
+      "total_matches": 897,
+      "coverage": 0.484375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789417178.5035388,
+    "date": "2026-09-15 01:49:38",
+    "src_basename": "tmpr5pwul5h.png",
+    "ref_basename": "tmp94usmaqt.png",
+    "method": "Autonomous [roma]",
+    "metrics": {
+      "rmse_pixels": 0.00018246169202029705,
+      "weighted_rmse": 0.00018246170657221228,
+      "inlier_ratio": 1.0,
+      "inlier_count": 897,
+      "total_matches": 897,
+      "coverage": 0.484375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789417548.002756,
+    "date": "2026-09-15 01:55:48",
+    "src_basename": "tmp0vfwc0d4.png",
+    "ref_basename": "tmpfhexfx7k.png",
+    "method": "OMNIROUTE [CONSENSUS] (SIFT)",
+    "metrics": {
+      "rmse_pixels": 0.0001370456739095971,
+      "weighted_rmse": 0.0001370456739095971,
+      "inlier_ratio": 1.0,
+      "inlier_count": 644,
+      "total_matches": 644,
+      "coverage": 0.484375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "omniroute",
+      "strategy": "consensus"
+    }
+  },
+  {
+    "timestamp": 1789417681.268467,
+    "date": "2026-09-15 01:58:01",
+    "src_basename": "tmp75ywq6sm.png",
+    "ref_basename": "tmpo8nyof93.png",
+    "method": "OMNIROUTE [FASTEST_WINS] (SIFT)",
+    "metrics": {
+      "rmse_pixels": 1180.9432373046875,
+      "weighted_rmse": 1180.9432373046875,
+      "inlier_ratio": 1.0,
+      "inlier_count": 1028,
+      "total_matches": 1028,
+      "coverage": 0.484375,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "omniroute",
+      "strategy": "fastest_wins"
+    }
+  },
+  {
+    "timestamp": 1789417717.627569,
+    "date": "2026-09-15 01:58:37",
+    "src_basename": "tmpzs4new8b.png",
+    "ref_basename": "tmpcgz5_ji7.png",
+    "method": "OMNIROUTE [ADAPTIVE_PROFILE] (SIFT)",
+    "metrics": {
+      "rmse_pixels": 0.0001370456739095971,
+      "weighted_rmse": 0.0001370456739095971,
+      "inlier_ratio": 1.0,
+      "inlier_count": 644,
+      "total_matches": 644,
+      "coverage": 0.484375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "omniroute",
+      "strategy": "adaptive_profile"
+    }
+  },
+  {
+    "timestamp": 1789417759.974518,
+    "date": "2026-09-15 01:59:19",
+    "src_basename": "tmpa6cbog9i.png",
+    "ref_basename": "tmpox8womm5.png",
+    "method": "SIFT (Fallback from roma)",
+    "metrics": {
+      "rmse_pixels": 0.00018246169202029705,
+      "weighted_rmse": 0.00018246170657221228,
+      "inlier_ratio": 1.0,
+      "inlier_count": 897,
+      "total_matches": 897,
+      "coverage": 0.484375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789418047.0266392,
+    "date": "2026-09-15 02:04:07",
+    "src_basename": "tmpunx66pgx.tif",
+    "ref_basename": "tmpvgm1svv6.tif",
+    "method": "Autonomous [roma]",
+    "metrics": {
+      "rmse_pixels": 0.0077605340629816055,
+      "weighted_rmse": 0.007760534528642893,
+      "inlier_ratio": 1.0,
+      "inlier_count": 6400,
+      "total_matches": 6400,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789477179.834692,
+    "date": "2026-09-15 18:29:39",
+    "src_basename": "tmp91crwo85.png",
+    "ref_basename": "tmpz9hezb61.png",
+    "method": "ROMA",
+    "metrics": {
+      "rmse_pixels": 0.33930277824401855,
+      "weighted_rmse": 0.33924442529678345,
+      "inlier_ratio": 0.9314765694076039,
+      "inlier_count": 4214,
+      "total_matches": 4524,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789477631.043794,
+    "date": "2026-09-15 18:37:11",
+    "src_basename": "tmpv_26pi94.png",
+    "ref_basename": "tmp0m6tulj7.png",
+    "method": "Autonomous [roma]",
+    "metrics": {
+      "rmse_pixels": 6.313265800476074,
+      "weighted_rmse": 5.962859153747559,
+      "inlier_ratio": 0.23008849557522124,
+      "inlier_count": 182,
+      "total_matches": 791,
+      "coverage": 0.375,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789479041.7323022,
+    "date": "2026-09-15 19:00:41",
+    "src_basename": "tmp92kn756h.png",
+    "ref_basename": "tmp4ao02yea.png",
+    "method": "ROMA",
+    "metrics": {
+      "rmse_pixels": 0.3350450098514557,
+      "weighted_rmse": 0.3349898159503937,
+      "inlier_ratio": 0.9344842850818946,
+      "inlier_count": 4222,
+      "total_matches": 4518,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789479894.478594,
+    "date": "2026-09-15 19:14:54",
+    "src_basename": "tmpapi4hl84.png",
+    "ref_basename": "tmptlw5mnrg.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.20988419651985168,
+      "weighted_rmse": 0.21650974452495575,
+      "inlier_ratio": 0.869394391003929,
+      "inlier_count": 12834,
+      "total_matches": 14762,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789481053.83518,
+    "date": "2026-09-15 19:34:13",
+    "src_basename": "tmpvwivq1gd.png",
+    "ref_basename": "tmp_0r97jar.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 3.975205898284912,
+      "weighted_rmse": 3.5378129482269287,
+      "inlier_ratio": 0.1990324809951624,
+      "inlier_count": 288,
+      "total_matches": 1447,
+      "coverage": 0.296875,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789486271.638623,
+    "date": "2026-09-15 21:01:11",
+    "src_basename": "tmp65jkw1po.tif",
+    "ref_basename": "tmp7s9i2mes.tif",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.1912367194890976,
+      "weighted_rmse": 0.19646337628364563,
+      "inlier_ratio": 0.8502982107355865,
+      "inlier_count": 8554,
+      "total_matches": 10060,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789487622.500297,
+    "date": "2026-09-15 21:23:42",
+    "src_basename": "tmprp8myj6i.png",
+    "ref_basename": "tmplovk9vkv.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.1730881929397583,
+      "weighted_rmse": 0.18068906664848328,
+      "inlier_ratio": 0.8636963212663051,
+      "inlier_count": 29465,
+      "total_matches": 34115,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789488765.348942,
+    "date": "2026-09-15 21:42:45",
+    "src_basename": "tmpsk8du9lf.png",
+    "ref_basename": "tmpx4ayy_qd.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.2128208577632904,
+      "weighted_rmse": 0.21984416246414185,
+      "inlier_ratio": 0.8688247617760357,
+      "inlier_count": 12856,
+      "total_matches": 14797,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789522961.884751,
+    "date": "2026-09-16 07:12:41",
+    "src_basename": "tmpcafrxgf0.tif",
+    "ref_basename": "tmpp9wm39s9.tif",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.1834951937198639,
+      "weighted_rmse": 0.18768420815467834,
+      "inlier_ratio": 0.8442476114649682,
+      "inlier_count": 8483,
+      "total_matches": 10048,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789668923.854513,
+    "date": "2026-09-17 23:45:23",
+    "src_basename": "tmph7hli1wg.png",
+    "ref_basename": "tmpmzddeyn3.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.287814736366272,
+      "weighted_rmse": 0.2893025279045105,
+      "inlier_ratio": 0.8531767218366257,
+      "inlier_count": 1598,
+      "total_matches": 1873,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789669268.150474,
+    "date": "2026-09-17 23:51:08",
+    "src_basename": "tmptfh_gx6m.tif",
+    "ref_basename": "tmprt5djn5_.tif",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.42150256037712097,
+      "weighted_rmse": 0.4220520555973053,
+      "inlier_ratio": 0.8518518518518519,
+      "inlier_count": 897,
+      "total_matches": 1053,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789669567.465193,
+    "date": "2026-09-17 23:56:07",
+    "src_basename": "tmpubeom_uf.tif",
+    "ref_basename": "tmpl6kopk0w.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 44.594818115234375,
+      "weighted_rmse": 37.2795295715332,
+      "inlier_ratio": 0.8,
+      "inlier_count": 4,
+      "total_matches": 5,
+      "coverage": 0.046875,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789671494.080398,
+    "date": "2026-09-18 00:28:14",
+    "src_basename": "tmp8xkxjosd.png",
+    "ref_basename": "tmp0yttx33h.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 3.2462830543518066,
+      "weighted_rmse": 2.9002673625946045,
+      "inlier_ratio": 0.09496810772501772,
+      "inlier_count": 134,
+      "total_matches": 1411,
+      "coverage": 0.25,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789674051.8109162,
+    "date": "2026-09-18 01:10:51",
+    "src_basename": "tmpysv77z3q.png",
+    "ref_basename": "tmpza8an_kp.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.18300916254520416,
+      "weighted_rmse": 0.18783143162727356,
+      "inlier_ratio": 0.8461538461538461,
+      "inlier_count": 8514,
+      "total_matches": 10062,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789674496.2217119,
+    "date": "2026-09-18 01:18:16",
+    "src_basename": "tmpek0jcl16.png",
+    "ref_basename": "tmp3xii3deg.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 8.720846176147461,
+      "weighted_rmse": 8.573840141296387,
+      "inlier_ratio": 0.5,
+      "inlier_count": 5,
+      "total_matches": 10,
+      "coverage": 0.0625,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789675822.868535,
+    "date": "2026-09-18 01:40:22",
+    "src_basename": "tmpvm6q4e8n.png",
+    "ref_basename": "tmp9urpu5sz.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.19958163797855377,
+      "weighted_rmse": 0.20361196994781494,
+      "inlier_ratio": 0.8411087866108786,
+      "inlier_count": 8041,
+      "total_matches": 9560,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789736219.946027,
+    "date": "2026-09-18 18:26:59",
+    "src_basename": "tmpcsun0nkc.png",
+    "ref_basename": "tmp7ai44dmm.png",
+    "method": "LUNARFUSION (ROMA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.25911128520965576,
+      "weighted_rmse": 0.2600024938583374,
+      "inlier_ratio": 0.8211794546607483,
+      "inlier_count": 1295,
+      "total_matches": 1577,
+      "coverage": 0.5,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789741554.106718,
+    "date": "2026-09-18 19:55:54",
+    "src_basename": "tmpwihd2zc5.png",
+    "ref_basename": "tmp_xd84rjx.png",
+    "method": "SIFT (Fallback from roma_omega)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 12437,
+      "total_matches": 12437,
+      "coverage": 0.5,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "roma_omega",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789756174.3131762,
+    "date": "2026-09-18 23:59:34",
+    "src_basename": "tmp670rkvjb.png",
+    "ref_basename": "tmpvnnzhyuc.png",
+    "method": "LUNARFUSION (ROMA_OMEGA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.1569707989692688,
+      "weighted_rmse": 0.16354896128177643,
+      "inlier_ratio": 1.0,
+      "inlier_count": 2509,
+      "total_matches": 2509,
+      "coverage": 0.4375,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789757170.967627,
+    "date": "2026-09-19 00:16:10",
+    "src_basename": "tmphj796l64.png",
+    "ref_basename": "tmphz66n_kq.png",
+    "method": "LUNARFUSION (ROMA_OMEGA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.29907581210136414,
+      "weighted_rmse": 0.30655208230018616,
+      "inlier_ratio": 0.9314720812182741,
+      "inlier_count": 734,
+      "total_matches": 788,
+      "coverage": 0.5,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789757680.2347689,
+    "date": "2026-09-19 00:24:40",
+    "src_basename": "tmpyzd_f914.png",
+    "ref_basename": "tmp1imp6v40.png",
+    "method": "LUNARFUSION (ROMA_OMEGA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.47310182452201843,
+      "weighted_rmse": 0.48431795835494995,
+      "inlier_ratio": 0.9666666666666667,
+      "inlier_count": 348,
+      "total_matches": 360,
+      "coverage": 0.625,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789757922.935703,
+    "date": "2026-09-19 00:28:42",
+    "src_basename": "tmpd0vclywd.png",
+    "ref_basename": "tmpwzx1t0ue.png",
+    "method": "LUNARFUSION (ROMA_OMEGA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.47310182452201843,
+      "weighted_rmse": 0.48431795835494995,
+      "inlier_ratio": 0.9666666666666667,
+      "inlier_count": 348,
+      "total_matches": 360,
+      "coverage": 0.625,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789758968.268071,
+    "date": "2026-09-19 00:46:08",
+    "src_basename": "tmpmxsrr_5l.png",
+    "ref_basename": "tmpmfdqs6vj.png",
+    "method": "OMNIROUTE [CONSENSUS] (SIFT + ORB + LOFTR)",
+    "metrics": {
+      "rmse_pixels": 0.20887643098831177,
+      "weighted_rmse": 0.20884354412555695,
+      "inlier_ratio": 0.9903498190591074,
+      "inlier_count": 821,
+      "total_matches": 829,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "omniroute",
+      "strategy": "consensus"
+    }
+  },
+  {
+    "timestamp": 1789759150.3317492,
+    "date": "2026-09-19 00:49:10",
+    "src_basename": "tmpuljmdagp.png",
+    "ref_basename": "tmpuyw8ywg9.png",
+    "method": "Autonomous [roma_omega]",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 903,
+      "total_matches": 903,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789759354.604429,
+    "date": "2026-09-19 00:52:34",
+    "src_basename": "tmpod5u4zrc.png",
+    "ref_basename": "tmp902zul8e.png",
+    "method": "Autonomous [loftr]",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 0.125,
+      "inlier_count": 4,
+      "total_matches": 32,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789761300.128444,
+    "date": "2026-09-19 01:25:00",
+    "src_basename": "ch2_tmc_nrn_20191208T0221109733_b_brw_g26.png",
+    "ref_basename": "ch2_tmc_nra_20191208T0221109733_b_brw_g26.png",
+    "method": "OMNIROUTE [ADAPTIVE_PROFILE] (SIFT + LOFTR)",
+    "metrics": {
+      "rmse_pixels": 0.8042534589767456,
+      "weighted_rmse": 0.7842766642570496,
+      "inlier_ratio": 0.35051546391752575,
+      "inlier_count": 272,
+      "total_matches": 776,
+      "coverage": 0.65625,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "omniroute",
+      "strategy": "adaptive_profile"
+    }
+  },
+  {
+    "timestamp": 1789761770.230134,
+    "date": "2026-09-19 01:32:50",
+    "src_basename": "ch2_tmc_nrn_20191208T0221109733_b_brw_g26.png",
+    "ref_basename": "ch2_tmc_nra_20191208T0221109733_b_brw_g26.png",
+    "method": "Autonomous [roma_v2]",
+    "metrics": {
+      "rmse_pixels": 128.6791534423828,
+      "weighted_rmse": 127.73770904541016,
+      "inlier_ratio": 0.6363636363636364,
+      "inlier_count": 7,
+      "total_matches": 11,
+      "coverage": 0.09375,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789761833.855212,
+    "date": "2026-09-19 01:33:53",
+    "src_basename": "tmp9upkrukl.png",
+    "ref_basename": "tmpj301klos.png",
+    "method": "Autonomous [sift]",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 903,
+      "total_matches": 903,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789762554.0625129,
+    "date": "2026-09-19 01:45:54",
+    "src_basename": "tmpxfz2ivey.png",
+    "ref_basename": "tmpsozodgev.png",
+    "method": "Autonomous [roma_v2]",
+    "metrics": {
+      "rmse_pixels": 0.30709534883499146,
+      "weighted_rmse": 0.30701637268066406,
+      "inlier_ratio": 0.9996107055961071,
+      "inlier_count": 10271,
+      "total_matches": 10275,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789763116.424088,
+    "date": "2026-09-19 01:55:16",
+    "src_basename": "ch2_tmc_nrn_20191208T0221109733_b_brw_g26.png",
+    "ref_basename": "ch2_tmc_nra_20191208T0221109733_b_brw_g26.png",
+    "method": "Autonomous [fusion]",
+    "metrics": {
+      "rmse_pixels": 0.6855060458183289,
+      "weighted_rmse": 0.6738027930259705,
+      "inlier_ratio": 0.43037974683544306,
+      "inlier_count": 136,
+      "total_matches": 316,
+      "coverage": 0.1875,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789763429.9339662,
+    "date": "2026-09-19 02:00:29",
+    "src_basename": "tmpsongbbn1.png",
+    "ref_basename": "tmp_9r7w7nd.png",
+    "method": "Autonomous [roma_v2]",
+    "metrics": {
+      "rmse_pixels": 0.4819830358028412,
+      "weighted_rmse": 0.47007372975349426,
+      "inlier_ratio": 0.9742352812191646,
+      "inlier_count": 17772,
+      "total_matches": 18242,
+      "coverage": 0.6875,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789763595.108918,
+    "date": "2026-09-19 02:03:15",
+    "src_basename": "tmparo_f64h.png",
+    "ref_basename": "tmpcl3oxglv.png",
+    "method": "LUNARFUSION (ROMA_OMEGA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.1569707989692688,
+      "weighted_rmse": 0.16354896128177643,
+      "inlier_ratio": 1.0,
+      "inlier_count": 2509,
+      "total_matches": 2509,
+      "coverage": 0.4375,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789792757.200716,
+    "date": "2026-09-19 10:09:17",
+    "src_basename": "tmpdfn07ild.png",
+    "ref_basename": "tmpvj80ywb5.png",
+    "method": "LUNARFUSION (ROMA_OMEGA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 0.5,
+      "inlier_count": 4,
+      "total_matches": 8,
+      "coverage": 0.03125,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": false,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789793537.022859,
+    "date": "2026-09-19 10:22:17",
+    "src_basename": "tmp1lns_yk1.png",
+    "ref_basename": "tmpvms4ujqb.png",
+    "method": "LUNARFUSION (ROMA_OMEGA + LOFTR + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.14399640262126923,
+      "weighted_rmse": 0.14949627220630646,
+      "inlier_ratio": 1.0,
+      "inlier_count": 2506,
+      "total_matches": 2506,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1789793849.873376,
+    "date": "2026-09-19 10:27:29",
+    "src_basename": "tmpvu1udati.png",
+    "ref_basename": "tmpcws7g9ja.png",
+    "method": "Autonomous [roma_v2]",
+    "metrics": {
+      "rmse_pixels": 0.05329276621341705,
+      "weighted_rmse": 0.05329263210296631,
+      "inlier_ratio": 1.0,
+      "inlier_count": 6804,
+      "total_matches": 6804,
+      "coverage": 1.0,
+      "grade": "A",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789794052.628054,
+    "date": "2026-09-19 10:30:52",
+    "src_basename": "tmp8aiunmcl.png",
+    "ref_basename": "tmpr3voxxyz.png",
+    "method": "Autonomous [roma_v2]",
+    "metrics": {
+      "rmse_pixels": 51.64330291748047,
+      "weighted_rmse": 48.81739044189453,
+      "inlier_ratio": 0.05405405405405406,
+      "inlier_count": 36,
+      "total_matches": 666,
+      "coverage": 0.34375,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789794964.906495,
+    "date": "2026-09-19 10:46:04",
+    "src_basename": "tmpy2conth6.png",
+    "ref_basename": "tmpnktwzlpm.png",
+    "method": "Autonomous [fusion]",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 4,
+      "total_matches": 4,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1789795222.149697,
+    "date": "2026-09-19 10:50:22",
+    "src_basename": "tmpne9lzz1r.png",
+    "ref_basename": "tmp6aur5z5p.png",
+    "method": "Autonomous [fusion]",
+    "metrics": {
+      "rmse_pixels": 0.0,
+      "weighted_rmse": 0.0,
+      "inlier_ratio": 1.0,
+      "inlier_count": 4,
+      "total_matches": 4,
+      "coverage": 0.0625,
+      "grade": "D",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "autonomous"
+    }
+  },
+  {
+    "timestamp": 1790323967.926621,
+    "date": "2026-09-25 13:42:47",
+    "src_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 1.023971676826477,
+      "weighted_rmse": 1.01394522190094,
+      "inlier_ratio": 0.09635173058933583,
+      "inlier_count": 103,
+      "total_matches": 1069,
+      "coverage": 0.5,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1790328129.051619,
+    "date": "2026-09-25 14:52:09",
+    "src_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.9873339533805847,
+      "weighted_rmse": 0.9884740710258484,
+      "inlier_ratio": 0.1,
+      "inlier_count": 106,
+      "total_matches": 1060,
+      "coverage": 0.46875,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1790328246.6756248,
+    "date": "2026-09-25 14:54:06",
+    "src_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 1.0751975774765015,
+      "weighted_rmse": 1.05841064453125,
+      "inlier_ratio": 0.10135135135135136,
+      "inlier_count": 105,
+      "total_matches": 1036,
+      "coverage": 0.4375,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1790336942.7712991,
+    "date": "2026-09-25 17:19:02",
+    "src_basename": "ch2_ohr_ncp_20230227T0133276778_d_img_n18.img",
+    "ref_basename": "ch2_ohr_ncp_20230823T1647285315_d_img_n18.img",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": null,
+      "weighted_rmse": null,
+      "inlier_ratio": 0.8,
+      "inlier_count": 4,
+      "total_matches": 5,
+      "coverage": 0.0625,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1790420067.667279,
+    "date": "2026-09-26 16:24:27",
+    "src_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.6845298409461975,
+      "weighted_rmse": 0.6849116683006287,
+      "inlier_ratio": 0.21243633276740237,
+      "inlier_count": 1001,
+      "total_matches": 4712,
+      "coverage": 0.609375,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "94d2b239-a058-45d8-bef0-d2d28a764df5"
+    }
+  },
+  {
+    "timestamp": 1790435319.585728,
+    "date": "2026-09-26 20:38:39",
+    "src_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.7724683880805969,
+      "weighted_rmse": 0.7627617120742798,
+      "inlier_ratio": 0.1870712401055409,
+      "inlier_count": 709,
+      "total_matches": 3790,
+      "coverage": 0.671875,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "14fb5269-0a2e-4444-848b-d9fbedb9ea06"
+    }
+  },
+  {
+    "timestamp": 1790440153.769227,
+    "date": "2026-09-26 21:59:13",
+    "src_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.7724683880805969,
+      "weighted_rmse": 0.7627617120742798,
+      "inlier_ratio": 0.1870712401055409,
+      "inlier_count": 709,
+      "total_matches": 3790,
+      "coverage": 0.671875,
+      "grade": "B",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "d01543dc-bb0f-4912-9cc6-d776b373a24d"
+    }
+  },
+  {
+    "timestamp": 1790529766.9183109,
+    "date": "2026-09-27 22:52:46",
+    "src_basename": "moon 2.png",
+    "ref_basename": "moon 3.png",
+    "method": "SIFT (Fallback from yolo11)",
+    "metrics": {
+      "rmse_pixels": null,
+      "weighted_rmse": null,
+      "inlier_ratio": 0.36363636363636365,
+      "inlier_count": 4,
+      "total_matches": 11,
+      "coverage": 0.046875,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "yolo11",
+      "backend_job_id": "b2fcc647-e0ad-481a-bfce-9d7b225b0b35"
+    }
+  },
+  {
+    "timestamp": 1790610832.552536,
+    "date": "2026-09-28 21:23:52",
+    "src_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 8.229655265808105,
+      "weighted_rmse": 7.965125560760498,
+      "inlier_ratio": 0.24535875564475665,
+      "inlier_count": 489,
+      "total_matches": 1993,
+      "coverage": 0.546875,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "029298b2-e608-4aa1-9862-98f0e340d77a"
+    }
+  },
+  {
+    "timestamp": 1790614007.924814,
+    "date": "2026-09-28 22:16:47",
+    "src_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 8.229655265808105,
+      "weighted_rmse": 7.965125560760498,
+      "inlier_ratio": 0.24535875564475665,
+      "inlier_count": 489,
+      "total_matches": 1993,
+      "coverage": 0.546875,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "1127e01f-5bc0-484f-8c56-88f81a660eb8"
+    }
+  },
+  {
+    "timestamp": 1790614449.479964,
+    "date": "2026-09-28 22:24:09",
+    "src_basename": "ch2_tmc_nrn_20191208T0221109733_b_brw_g26.png",
+    "ref_basename": "ch2_tmc_nra_20191208T0221109733_b_brw_g26.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 2.4054582118988037,
+      "weighted_rmse": 2.2055678367614746,
+      "inlier_ratio": 0.287248322147651,
+      "inlier_count": 214,
+      "total_matches": 745,
+      "coverage": 0.5625,
+      "grade": "C",
+      "passed": true
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "7ece6428-4d15-423b-8031-565cc0472eda"
+    }
+  },
+  {
+    "timestamp": 1790698377.652169,
+    "date": "2026-09-29 21:42:57",
+    "src_basename": "ch2_tmc_nrn_20191208T0221109733_b_brw_g26.png",
+    "ref_basename": "ch2_tmc_nra_20191208T0221109733_b_brw_g26.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": null,
+      "weighted_rmse": null,
+      "inlier_ratio": 0.0425531914893617,
+      "inlier_count": 14,
+      "total_matches": 329,
+      "coverage": 0.140625,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1790705419.566491,
+    "date": "2026-09-29 23:40:19",
+    "src_basename": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+    "ref_basename": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+    "method": "LUNARFUSION (ROMA_V2 + LOFTR + YOLO11 + SIFT + LIGHTGLUE + NI_LFM)",
+    "metrics": {
+      "rmse_pixels": 0.2714805006980896,
+      "weighted_rmse": 0.27320921421051025,
+      "inlier_ratio": 0.012629679747406405,
+      "inlier_count": 28,
+      "total_matches": 2217,
+      "coverage": 0.203125,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "strategy": ""
+    }
+  },
+  {
+    "timestamp": 1792042530.995109,
+    "date": "2026-10-15 11:05:30",
+    "src_basename": "KING1.jpeg",
+    "ref_basename": "KING 2.jpeg",
+    "method": "SIFT (Classical)",
+    "metrics": {
+      "rmse_pixels": null,
+      "weighted_rmse": null,
+      "inlier_ratio": 0.5,
+      "inlier_count": 4,
+      "total_matches": 8,
+      "coverage": 0.046875,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "5ea884f6-c17d-4d9d-8786-2bc9ca87439a"
+    }
+  },
+  {
+    "timestamp": 1792042626.1660511,
+    "date": "2026-10-15 11:07:06",
+    "src_basename": "KING1.jpeg",
+    "ref_basename": "KING 2.jpeg",
+    "method": "SIFT (Classical)",
+    "metrics": {
+      "rmse_pixels": null,
+      "weighted_rmse": null,
+      "inlier_ratio": 0.0,
+      "inlier_count": 0,
+      "total_matches": 0,
+      "coverage": 0.0,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "ce97a39d-9d57-4ea4-b6fe-dcfce5b0673b"
+    }
+  },
+  {
+    "timestamp": 1792043376.32567,
+    "date": "2026-10-15 11:19:36",
+    "src_basename": "KING1.jpeg",
+    "ref_basename": "kg1.jpeg",
+    "method": "SIFT (Classical)",
+    "metrics": {
+      "rmse_pixels": null,
+      "weighted_rmse": null,
+      "inlier_ratio": 0.0,
+      "inlier_count": 0,
+      "total_matches": 0,
+      "coverage": 0.0,
+      "grade": "F",
+      "passed": false
+    },
+    "params": {
+      "max_dim": 2048,
+      "use_tps": true,
+      "matcher": "fusion",
+      "backend_job_id": "d6edc6ef-8f7c-43e2-8b88-54c91361dd89"
+    }
+  }
+]

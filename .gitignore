@@ -1,0 +1,95 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Unit test / coverage
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+htmlcov/
+
+# Logs and databases
+*.log
+*.sqlite
+*.sqlite3
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor and IDE artifacts
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Blender backup saves
+*.blend1
+*.blend2
+
+# HuggingFace & download locks
+*.lock
+
+# Environment variables (keep .env.example)
+.env
+.env.local
+
+# Large datasets, raw spacecraft cubes & checkpoints (exceeds GitHub 100MB limit)
+data/
+data_storage/
+backbone/
+StereoPipeline*/
+reference2/
+*.qub
+*.img
+*.tif
+*.tiff
+*.pt
+*.pth
+*.tar*
+*.zip
+*.bin
+!yolo11n.pt
+
+

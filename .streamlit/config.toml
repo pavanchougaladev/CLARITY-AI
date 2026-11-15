@@ -1,0 +1,18 @@
+[theme]
+base = "dark"
+primaryColor = "#38BDF8"
+backgroundColor = "#000000"
+secondaryBackgroundColor = "#0A0A0D"
+textColor = "#F8FAFC"
+font = "sans serif"
+
+[theme.sidebar]
+backgroundColor = "#000000"
+secondaryBackgroundColor = "#0A0A0D"
+textColor = "#F8FAFC"
+
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+maxUploadSize = 512
