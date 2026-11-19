@@ -5,7 +5,6 @@
 **CLARITY\*** is an advanced lunar image co-registration and analysis platform designed to automate the alignment of heterogeneous lunar imagery acquired by India's Chandrayaan missions.
 
 The platform combines classical computer vision, deep learning-based feature matching, photometric normalization, geometric transformation, and stereo reconstruction to achieve accurate and reliable registration across images captured under varying illumination conditions, viewing geometries, and spatial resolutions.
-
 CLARITY* supports imagery from **Chandrayaan-1 Moon Mineralogy Mapper (M³)** and **Chandrayaan-2 Orbiter High Resolution Camera (OHRC) and Terrain Mapping Camera-2 (TMC-2)**.
 
 The system provides an end-to-end workflow covering image ingestion, preprocessing, feature correspondence, robust geometric estimation, registration validation, DEM generation, and interactive visualization.
