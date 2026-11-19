@@ -17,6 +17,25 @@ import numpy as np
 import cv2
 from typing import Tuple, Dict, Any, List
 
+import os
+import tempfile
+import shutil
+
+# Isolate the persistent upload workspace: tests must never read or clobber the
+# operator's real saved pair. Set before any test module imports client.workspace,
+# which reads this environment variable at import time.
+_TEST_WORKSPACE = os.path.join(tempfile.gettempdir(), "clarity_test_workspace")
+os.environ["CLARITY_WORKSPACE"] = _TEST_WORKSPACE
+
+
+@pytest.fixture(autouse=True)
+def _clean_test_workspace():
+    """Remove the persisted upload pair between tests so sessions start fresh."""
+    shutil.rmtree(_TEST_WORKSPACE, ignore_errors=True)
+    yield
+    shutil.rmtree(_TEST_WORKSPACE, ignore_errors=True)
+
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Core Lunar Texture & Feature Synthesis Helpers

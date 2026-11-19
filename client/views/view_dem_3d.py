@@ -5,7 +5,7 @@ import numpy as np
 import plotly.graph_objects as go
 import streamlit as st
 from config import DEM_SPACING, PRESETS
-from components.header import sample_badge
+from components.header import sample_badge, active_pair_banner
 import services
 
 def _layout(fig, h=520):
@@ -33,7 +33,8 @@ def render() -> None:
     
     res = st.session_state.get("result")
     sample_badge(res)
-    
+    active_pair_banner()
+
     # Ingest reference image from current session or preset
     preset_name = st.session_state.get("preset", list(PRESETS)[0])
     images = st.session_state.get("images")
@@ -270,7 +271,11 @@ def render() -> None:
 
         b_col1, b_col2, b_col3 = st.columns(3)
         
-        # Action 1: Headless Blender Scene Build & Render
+        # .blend project file produced by the headless build
+        blend_file = os.path.join(services.PROJECT_ROOT, "data", "outputs", "lunar_terrain.blend")
+        blend_exists = os.path.exists(blend_file)
+
+        # Action 1: Headless Blender Scene Build & Render + open in Blender app
         if b_col1.button("Generate 3D scene in Blender", icon=":material/architecture:", width="stretch", type="primary"):
             with st.status("Building Blender 3D model...", expanded=True) as b_stat:
                 st.write("Computing tangent-space Normal Map from DEM & optical gradients...")
@@ -291,19 +296,22 @@ def render() -> None:
                 if b_res.get("success"):
                     st.session_state["blender_result"] = b_res
                     b_stat.update(label="Blender 3D scene generated successfully", state="complete")
+                    # Automatically open the generated 3D scene in the Blender application
+                    if services.launch_blender_interactive(blend_file):
+                        st.toast("Opening the 3D lunar terrain in the Blender app...", icon=":material/view_in_ar:")
+                        st.write("Blender app launched with `lunar_terrain.blend`.")
+                    else:
+                        st.warning("3D scene generated, but Blender could not be opened automatically. Use 'Launch Blender 3D application' or open the .blend file manually.")
                 else:
                     b_stat.update(label=f"Blender build error: {b_res.get('error')}", state="error")
 
         # Action 2: Launch Blender GUI Application
-        blend_file = os.path.join(services.PROJECT_ROOT, "data", "outputs", "lunar_terrain.blend")
-        blend_exists = os.path.exists(blend_file)
-        
         if b_col2.button(
             "Launch Blender 3D application",
             icon=":material/open_in_new:",
             width="stretch",
             disabled=not blender_path,
-            help="Opens Blender application on your Mac with the 3D lunar terrain loaded",
+            help="Opens the Blender application on your system with the 3D lunar terrain loaded",
         ):
             if not blend_exists:
                 services.run_blender_generation(

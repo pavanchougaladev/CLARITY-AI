@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 from config import BENCH
-from components.header import sample_badge
+from components.header import sample_badge, active_pair_banner
 
 def render() -> None:
     st.title("Evaluation, Benchmarks & Quality Audit")
@@ -13,6 +13,7 @@ def render() -> None:
     
     res = st.session_state.get("result")
     sample_badge(res)
+    active_pair_banner()
 
     # 1. Benchmark comparison table
     with st.container(border=True):
@@ -41,14 +42,31 @@ def render() -> None:
     # 2. Residual error boxplot
     with st.container(border=True):
         st.subheader("Sub-pixel residual error distribution", anchor=False)
-        st.caption("Distribution of tie-point Euclidean residuals across deep, foundation, multimodal, and classical matchers.")
-        
-        rng = np.random.default_rng(42)
+        st.caption(
+            "Reference boxes show deterministic |N(0, published RMSE)| quantiles for each published "
+            "method on the multimodal benchmark pairs. The live trace plots this run's measured "
+            "tie-point residuals — no synthetic sampling is used for live data."
+        )
+
+        from statistics import NormalDist
+        quantiles = np.linspace(0.005, 0.995, 250)
         fig = go.Figure()
-        
+
+        live_res = (st.session_state.get("result") or {}).get("residuals") or []
+        if live_res:
+            fig.add_trace(go.Box(
+                y=live_res,
+                name="This run (live)",
+                boxpoints=False,
+                marker_color="#F8FAFC",
+                line=dict(width=2.0),
+            ))
+
         for idx, (m, rmse) in enumerate(zip(df["Methodology"], df["RMSE (px)"])):
+            if rmse is None:
+                continue
             c = "#38BDF8" if idx == 0 else ("#10B981" if rmse < 0.50 else ("#F59E0B" if rmse < 1.0 else "#64748B"))
-            spread = np.abs(rng.normal(0, rmse, 250))
+            spread = np.abs([rmse * NormalDist().inv_cdf(q) for q in quantiles])
             fig.add_trace(go.Box(
                 y=spread,
                 name=m.split(" (")[0],

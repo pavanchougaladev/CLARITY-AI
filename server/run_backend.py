@@ -16,6 +16,13 @@ else:
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
+# Backend packages (api/, src/) live next to this script; data-relative paths
+# (models/, configs/, registration_history.json, outputs/) resolve against the
+# project root, so anchor the working directory there.
+_PROJECT_ROOT = os.path.dirname(BASE_DIR) if not getattr(sys, 'frozen', False) else os.getcwd()
+if os.path.isdir(_PROJECT_ROOT):
+    os.chdir(_PROJECT_ROOT)
+
 import uvicorn
 
 def main():

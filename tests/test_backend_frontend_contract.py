@@ -162,7 +162,10 @@ def test_api_serialization_and_ui_deserialization_contract(tmp_path):
 
 def test_frontend_backend_helpers(monkeypatch):
     """Test frontend backend helper functions against mock / live responses."""
-    from ui.app import (
+    import sys
+    sys.path.insert(0, os.path.abspath("client"))
+
+    from api_client import (
         _format_backend_results,
         _list_backend_jobs,
         _cancel_backend_job,

@@ -22,6 +22,7 @@ import numpy as np
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, PROJECT_ROOT)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'server'))
 
 from src.pipeline import run_registration_pipeline, robust_read
 from src.evaluate.metrics import evaluate_transform_gt_rmse, synthetic_grid_gt_rmse, match_density_grid, reprojection_error_per_point

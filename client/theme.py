@@ -26,7 +26,9 @@ header[data-testid="stHeader"] {
 .block-container {
     padding-top: 1.5rem;
     padding-bottom: 2.5rem;
-    max-width: 1220px;
+    /* Scale the dashboard with the screen instead of capping at 1220px:
+       the Visual Inspection Studio should use the full width on large monitors. */
+    max-width: min(94vw, 1760px);
 }
 """
 

@@ -22,9 +22,10 @@ import traceback
 import numpy as np
 
 
-# Ensure project root is in the path
+# Ensure project root and backend packages (server/) are in the path
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, PROJECT_ROOT)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'server'))
 
 from src.pipeline import run_registration_pipeline
 

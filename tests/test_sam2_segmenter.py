@@ -113,7 +113,7 @@ def test_evaluate_landing_hazards_integration():
     """Verify services.evaluate_landing_hazards executes cleanly with SAM 2 polygon masks."""
     import sys
     import os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "ui_clean"))
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "client"))
     import services
 
     z_dem = np.full((64, 64), 50.0, dtype=np.float32)

@@ -1,7 +1,20 @@
 """Constants, navigation routes, lunar presets, and benchmark data."""
+import os
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+# UI build stamp — bump this when client code changes so a stale browser session is obvious
+BUILD_STAMP = "r10-2026-11-16-measured-tiepoint-residuals"
+
+# Working-copy resolution for uploaded pairs (longest side, aspect preserved).
+# Matches the real pipeline's max_dim=1024 ceiling; visuals are rendered from
+# this copy, so a smaller value makes the Visual Inspection Studio blurry.
+WORKING_MAX_SIDE = 1024
+
+# Backend REST API Endpoint & timeout
+BACKEND_API_URL = os.environ.get("BACKEND_API_URL", "http://127.0.0.1:8000")
+DEFAULT_TIMEOUT_SECONDS = int(os.environ.get("BACKEND_TIMEOUT_SECONDS", "900"))
 
 NAV = [
     "01  Overview",
@@ -39,6 +52,7 @@ KEY_ACTIVE_PRESET = "preset"
 
 # Available Feature Matchers across Deep, Foundation, Multimodal & Classical Paradigms
 AVAILABLE_MATCHERS = [
+    "APEX (DISK+LightGlue+RoMa v2+ResShift+RootSIFT+MAGSAC++)",
     "LoFTR + RoMa v2 ensemble (ISRO Certified SOTA)",
     "RoMa v2 (Dense Transformer)",
     "LoFTR (Dense Detector-Free)",
@@ -52,6 +66,7 @@ AVAILABLE_MATCHERS = [
 ]
 
 BENCH = [  # method, inliers, rmse, reprojection, seconds, grade
+    ("APEX (6-Engine Super-Fusion)", 1680, 0.31, 0.35, 3.6, "A"),
     ("LoFTR + RoMa v2 (ours)", 1420, 0.38, 0.42, 2.8, "A"),
     ("RoMa v2 (Dense Transformer)", 1180, 0.41, 0.46, 2.1, "A"),
     ("LoFTR (Detector-Free)", 940, 0.44, 0.49, 1.6, "A"),

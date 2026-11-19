@@ -7,13 +7,14 @@ from __future__ import annotations
 
 import io
 import os
+import sys
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import streamlit as st
 from PIL import Image
-from config import DEM_SPACING, GSD_REF, PRESETS, PROJECT_ROOT
+from config import DEM_SPACING, GSD_REF, PRESETS, PROJECT_ROOT, WORKING_MAX_SIDE
 
 USE_REAL_PIPELINE = False
 
@@ -39,14 +40,38 @@ def synth_patch(seed: int, noise_seed: int, shift=(0, 0), size=512, n=18):
     return (np.clip(img, 0, 1) * 255).astype("uint8"), craters
 
 
-def to_gray512(file) -> np.ndarray:
-    """Converts an uploaded file or path to 512x512 grayscale uint8 array."""
+def to_gray_working(file, max_side: int = None) -> np.ndarray:
+    """Converts an uploaded file or path to grayscale uint8, longest side
+    ``max_side`` (default WORKING_MAX_SIDE), preserving aspect ratio.
+
+    The working copy feeds both the registration pipeline and the Visual
+    Inspection Studio; it is sized to the pipeline ceiling (max_dim=1024) so
+    studio views are not upscaled 3x and rendered blurry.
+    """
+    if max_side is None:
+        max_side = WORKING_MAX_SIDE
     if isinstance(file, (str, os.PathLike)):
         p = os.path.join(PROJECT_ROOT, file) if not os.path.isabs(str(file)) else str(file)
         if os.path.exists(p):
             with Image.open(p) as img:
-                return np.array(img.convert("L").resize((512, 512)))
-    return np.array(Image.open(file).convert("L").resize((512, 512)))
+                return _gray_scaled(img, max_side)
+    # Read a fresh stream: upload cursors may have been consumed on a prior rerun.
+    stream = io.BytesIO(file.getvalue()) if hasattr(file, "getvalue") else file
+    with Image.open(stream) as img:
+        return _gray_scaled(img, max_side)
+
+
+# Legacy name from the 512px working-copy era; kept for compatibility.
+to_gray512 = to_gray_working
+
+
+def _gray_scaled(img: Image.Image, max_side: int) -> np.ndarray:
+    gray = img.convert("L")
+    w, h = gray.size
+    scale = float(max_side) / max(w, h)
+    if scale != 1.0:
+        gray = gray.resize((max(1, round(w * scale)), max(1, round(h * scale))))
+    return np.array(gray)
 
 
 def get_pair(preset: str, up_src=None, up_ref=None) -> Tuple[np.ndarray, np.ndarray]:
@@ -292,13 +317,19 @@ def detect_craters_hybrid(
         except Exception:
             pass
 
-    # Fallback to calibrated synthetic craters if neither found anything
+    # Fallback to calibrated synthetic craters if neither found anything.
+    # Geometry must scale with the image: aspect-preserved inputs can be narrow
+    # strips (e.g. 512x61), where fixed 60px margins and 16-48px radii are
+    # impossible (high - low < 0 in the uniform sampler).
     if not all_craters:
         rng = np.random.default_rng(3)
+        margin = max(2.0, min(60.0, 0.15 * min(w_img, h_img)))
+        r_hi = max(margin, min(48.0, 0.25 * min(w_img, h_img)))
+        r_lo = max(3.0, 0.4 * r_hi)
         for _ in range(8):
-            cx = float(rng.uniform(60, w_img - 60))
-            cy = float(rng.uniform(60, h_img - 60))
-            r = float(rng.uniform(16, 48))
+            cx = float(rng.uniform(margin, max(margin + 1e-3, w_img - margin)))
+            cy = float(rng.uniform(margin, max(margin + 1e-3, h_img - margin)))
+            r = float(rng.uniform(r_lo, r_hi))
             all_craters.append({
                 "cx": cx,
                 "cy": cy,
@@ -550,15 +581,22 @@ def _real_registration(src: np.ndarray, ref: np.ndarray, settings: dict) -> dict
     from src.pipeline import run_registration_pipeline
     import tempfile
 
-    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f_s, \
-         tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f_r:
-        Image.fromarray(src).save(f_s.name)
-        Image.fromarray(ref).save(f_r.name)
-        path_s, path_r = f_s.name, f_r.name
+    # Close handles before Pillow reopens the paths (required on Windows).
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f_s:
+        path_s = f_s.name
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f_r:
+        path_r = f_r.name
 
     try:
+        Image.fromarray(src).save(path_s)
+        Image.fromarray(ref).save(path_r)
+        with Image.open(path_s) as saved_s, Image.open(path_r) as saved_r:
+            if pair_signature(np.array(saved_s), np.array(saved_r)) != pair_signature(src, ref):
+                raise ValueError("Registration input integrity failure: persisted pixels differ from active pair")
         matcher = settings.get("matcher", "ensemble").lower()
-        if "loftr" in matcher and "roma" in matcher:
+        if "apex" in matcher:
+            matcher_type = "apex"
+        elif "loftr" in matcher and "roma" in matcher:
             matcher_type = "ensemble"
         elif "roma" in matcher:
             matcher_type = "roma_v2"
@@ -590,27 +628,62 @@ def _real_registration(src: np.ndarray, ref: np.ndarray, settings: dict) -> dict
             matcher_type=matcher_type,
             auto_recover=True,
             cross_sun_resilience=cross_sun_res,
+            include_input_hashes=True,
         )
 
         pts_s = results.get("inliers_src", results.get("pts_src", np.empty((0, 2))))
         pts_r = results.get("inliers_ref", results.get("pts_ref", np.empty((0, 2))))
         matches = [((float(ps[0]), float(ps[1])), (float(pr[0]), float(pr[1]))) for ps, pr in zip(pts_s, pts_r)]
 
+        # Per-inlier Euclidean residuals: measured distance between each source
+        # tie-point mapped onto the reference frame and its verified reference
+        # counterpart. Never fabricated — empty when no transform was fitted.
+        residuals: List[float] = []
+        try:
+            proj_src = results.get("inliers_src_proj")
+            if (proj_src is None or len(proj_src) != len(pts_s)) and len(pts_s) >= 4:
+                h_fb = results.get("H_fallback")
+                if isinstance(h_fb, np.ndarray) and h_fb.shape == (3, 3):
+                    import cv2
+                    proj_src = cv2.perspectiveTransform(
+                        np.asarray(pts_s, dtype=np.float32).reshape(-1, 1, 2),
+                        h_fb.astype(np.float64),
+                    ).reshape(-1, 2)
+            if proj_src is not None and len(pts_r) > 0 and len(proj_src) == len(pts_r):
+                proj_arr = np.asarray(proj_src, dtype=float)
+                ref_arr = np.asarray(pts_r, dtype=float)
+                residuals = [
+                    round(float(np.hypot(px - rx, py - ry)), 4)
+                    for (px, py), (rx, ry) in zip(proj_arr, ref_arr)
+                ]
+        except Exception:
+            residuals = []
+
         inliers = int(results.get("inlier_count", len(pts_s)))
-        rmse = float(results.get("rmse_pixels", 0.38) or 0.38)
-        coverage = float(results.get("coverage", 0.84) * 100)
+        rmse_raw = results.get("rmse_pixels")
+        rmse = float(rmse_raw) if rmse_raw is not None else None
+        coverage = float(results.get("coverage", 0.0) * 100)
 
         # High-precision hybrid crater detection on reference frame
         craters = detect_craters_hybrid(ref, conf=0.18, gsd=GSD_REF)
 
+        quality = results.get("quality", {}) or {}
+        conf_raw = quality.get("confidence")
+        confidence = round(float(conf_raw) * 100, 1) if conf_raw is not None else None
+        grade = results.get("quality_grade") or (
+            "Grade A" if inliers >= 15 and rmse is not None and rmse < 0.50 and coverage >= 15.0 else "Grade F"
+        )
+        quality_details = quality.get("details", {}) or {}
+
         res = dict(
             is_sample=False,
-            points=int(results.get("total_matches", inliers * 1.25)),
+            points=int(results.get("total_matches", 0) or 0),
             inliers=inliers,
-            rmse=round(rmse, 2),
-            confidence=round(float(results.get("quality", {}).get("confidence", 0.994)) * 100, 1),
+            rmse=round(rmse, 3) if rmse is not None else None,
+            confidence=confidence,
             entropy=round(coverage, 1),
             matches=matches,
+            residuals=residuals,
             craters=craters,
             settings=settings,
             img_src_warped=results.get("img_src_warped"),
@@ -619,13 +692,26 @@ def _real_registration(src: np.ndarray, ref: np.ndarray, settings: dict) -> dict
             hapke_src=results.get("norm_src", get_shadow_free_representation(src)),
             hapke_ref=results.get("norm_ref", get_shadow_free_representation(ref)),
             illumination=results.get("illumination_disparity", {}),
+            input_audit={
+                "pair_signature": pair_signature(src, ref),
+                "source_shape": list(src.shape),
+                "reference_shape": list(ref.shape),
+                "persisted_pixels_verified": True,
+                "pipeline_provenance": results.get("provenance", {}),
+            },
         )
         res["gates"] = {
-            "overfit": inliers >= 15 and rmse < 0.50,
+            "overfit": inliers >= 15 and rmse is not None and rmse < 0.50,
             "inliers": inliers >= 15,
             "entropy": coverage >= 15.0,
         }
-        res["grade"] = "A" if all(res["gates"].values()) else "C"
+        res["grade"] = grade
+        if inliers < 15:
+            res["rejection"] = dict(
+                primary_reason=quality.get("primary_reason"),
+                reason_codes=quality.get("reason_codes"),
+                gate_telemetry=quality_details.get("gate_telemetry", quality.get("gate_telemetry", {})),
+            )
         return res
     finally:
         for p in (path_s, path_r):
@@ -634,6 +720,10 @@ def _real_registration(src: np.ndarray, ref: np.ndarray, settings: dict) -> dict
 
 
 MATCHER_PROFILES = {
+    "apex": {
+        "inliers": 1680, "points": 2140, "rmse": 0.31, "conf": 99.7, "entropy": 88.6,
+        "spread": 0.24, "pts_count": 160, "grade": "GRADE A (CERTIFIED)", "category": "APEX 6-Engine Super-Fusion (MAGSAC++)",
+    },
     "ensemble": {
         "inliers": 1420, "points": 1850, "rmse": 0.38, "conf": 99.4, "entropy": 84.2,
         "spread": 0.27, "pts_count": 144, "grade": "GRADE A (CERTIFIED)", "category": "Dense Transformer Ensemble",
@@ -689,13 +779,96 @@ def _resolve_profile(matcher_str: str) -> dict:
     return MATCHER_PROFILES["sift"]
 
 
-def run_registration(src: np.ndarray, ref: np.ndarray, settings: dict, preset: str) -> dict:
-    """Executes registration: real pipeline if requested, or verified fast demo result."""
-    if USE_REAL_PIPELINE or settings.get("execute_real"):
+def pair_signature(src: np.ndarray, ref: np.ndarray) -> str:
+    """Stable fingerprint of an ingested image pair.
+
+    Used to tie a registration result to the exact pair that produced it, so the
+    UI can never present a previous pair's results under newly uploaded images.
+    """
+    import hashlib
+    digest = hashlib.sha1()
+    digest.update(np.ascontiguousarray(src, dtype=np.uint8).tobytes())
+    digest.update(b"|")
+    digest.update(np.ascontiguousarray(ref, dtype=np.uint8).tobytes())
+    return digest.hexdigest()[:16]
+
+
+def _failed_registration(src: np.ndarray, ref: np.ndarray, settings: dict, fallback_error: str) -> dict:
+    """Honest failure result for an uploaded pair whose real registration crashed.
+
+    Deliberately contains no fabricated inliers, residuals or tie-point grid: the
+    numbers and matches of the demo profile belong to a bundled preset, never to
+    the pair the operator uploaded.
+    """
+    try:
+        craters = detect_craters_hybrid(ref, conf=0.18, gsd=GSD_REF)
+    except Exception:
+        craters = []
+    return dict(
+        is_sample=False,
+        points=0,
+        inliers=0,
+        inlier_ratio=0.0,
+        rmse=None,
+        confidence=None,
+        entropy=0.0,
+        matches=[],
+        residuals=[],
+        craters=craters,
+        settings=settings,
+        matcher_category=settings.get("matcher", ""),
+        img_src_warped=src,
+        raw_img_src=src,
+        raw_img_ref=ref,
+        hapke_src=src,
+        hapke_ref=ref,
+        illumination={},
+        gates={
+            "overfit": False,
+            "inliers": False,
+            "entropy": False,
+            "zero_hallucination": True,
+            "recovery": False,
+        },
+        grade="Grade F",
+        rejection=dict(
+            primary_reason="REAL_PIPELINE_FAILED",
+            reason_codes=["REAL_PIPELINE_FAILED"],
+            gate_telemetry={"Real pipeline": "raised an exception before producing a transform"},
+        ),
+        fallback_error=fallback_error,
+        pair_signature=pair_signature(src, ref),
+    )
+
+
+def run_registration(
+    src: np.ndarray,
+    ref: np.ndarray,
+    settings: dict,
+    preset: str,
+    allow_demo: bool = True,
+) -> dict:
+    """Executes registration: real pipeline if requested, or labelled demo fallback.
+
+    If the real pipeline raises, the failure is surfaced via `fallback_error` on the
+    returned result so the UI can tell the operator that the telemetry shown is
+    SIMULATED demo data, never a certified registration of the uploaded pair.
+
+    ``allow_demo`` must be False whenever the operator supplied their own images:
+    a crashed run then returns a genuine Grade-F failure for that pair instead of
+    the preset-seeded demo profile, which is otherwise identical for every upload.
+    """
+    fallback_error: Optional[str] = None
+    if not allow_demo or USE_REAL_PIPELINE or settings.get("execute_real"):
         try:
-            return _real_registration(src, ref, settings)
+            res = _real_registration(src, ref, settings)
+            res["pair_signature"] = pair_signature(src, ref)
+            return res
         except Exception:
-            pass
+            import traceback
+            fallback_error = traceback.format_exc()
+            if not allow_demo:
+                return _failed_registration(src, ref, settings, fallback_error)
 
     time.sleep(0.3)
     seed = PRESETS[preset]["seed"]
@@ -804,6 +977,8 @@ def run_registration(src: np.ndarray, ref: np.ndarray, settings: dict, preset: s
         },
         grade=prof["grade"] if rmse < 0.50 else "GRADE C",
     )
+    res["fallback_error"] = fallback_error
+    res["pair_signature"] = pair_signature(src, ref)
     return res
 
 
@@ -861,9 +1036,11 @@ def dem_ply_colored(z: np.ndarray, tex: np.ndarray, spacing: float = DEM_SPACING
         "end_header",
     ]
     lines = list(header)
+    # Support grayscale (2D) and RGB (3D) textures — average channels for radiance
+    tex_gray = np.mean(tex, axis=2) if tex.ndim == 3 else tex
     for r in range(sh):
         for c in range(sw):
-            val = int(tex[r, c])
+            val = int(np.clip(tex_gray[r, c], 0, 255))
             lines.append(f"{c*spacing:.2f} {r*spacing:.2f} {z[r, c]:.2f} {val} {val} {val}")
     for r in range(sh - 1):
         for c in range(sw - 1):
@@ -918,19 +1095,51 @@ def dem_obj_textured(z: np.ndarray, spacing: float = DEM_SPACING) -> Tuple[str, 
 # ---------- Blender Bridge ----------
 
 def find_blender_binary() -> Optional[str]:
-    """Detects Blender executable on the system."""
+    """Detects Blender executable on the system (macOS / Linux / Windows)."""
+    import glob
+    import shutil
+
+    # 1. Explicit user override (BLENDER_PATH or BLENDER_BIN)
+    for env_key in ("BLENDER_PATH", "BLENDER_BIN"):
+        env_path = os.environ.get(env_key, "").strip()
+        if env_path and os.path.exists(env_path) and os.access(env_path, os.X_OK):
+            return env_path
+
+    # 2. On PATH
+    which_path = shutil.which("blender")
+    if which_path and os.path.exists(which_path):
+        return which_path
+
     candidates = [
+        # macOS
         "/Applications/Blender.app/Contents/MacOS/Blender",
         os.path.expanduser("~/Applications/Blender.app/Contents/MacOS/Blender"),
+        # Linux
         "/usr/local/bin/blender",
         "/opt/homebrew/bin/blender",
         "/usr/bin/blender",
+        # Windows (custom drives, e.g. D:\Blender 5.2\blender.exe)
     ]
     for p in candidates:
         if os.path.exists(p) and os.access(p, os.X_OK):
             return p
-    import shutil
-    return shutil.which("blender")
+
+    # 3. Windows: glob across install roots so any version/major-drive matches
+    win_roots = [
+        r"D:\Blender*",
+        r"C:\Program Files\Blender Foundation\Blender*",
+        r"C:\Program Files\Blender*",
+        r"C:\Program Files (x86)\Blender Foundation\Blender*",
+        os.path.expandvars(r"%LOCALAPPDATA%\Blender Foundation\Blender*"),
+        os.path.expandvars(r"%ProgramFiles%\Blender Foundation\Blender*"),
+    ]
+    for root in win_roots:
+        for match in sorted(glob.glob(root), reverse=True):
+            exe = os.path.join(match, "blender.exe")
+            if os.path.exists(exe):
+                return exe
+
+    return None
 
 
 def generate_lunar_normal_map(
@@ -1047,7 +1256,7 @@ def run_blender_generation(
         if enable_turntable:
             cmd.append("--anim")
 
-        p = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        p = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
         if p.returncode != 0:
             err_msg = p.stderr.strip() or p.stdout.strip()
             return {"success": False, "error": f"Blender build failed: {err_msg[-400:]}"}
@@ -1081,7 +1290,18 @@ def launch_blender_interactive(blend_path: Optional[str] = None) -> bool:
     path = blend_path or os.path.join(PROJECT_ROOT, "data", "outputs", "lunar_terrain.blend")
     if not os.path.exists(path):
         return False
-    subprocess.Popen([b_bin, path])
+    kwargs = {"close_fds": True}
+    if sys.platform == "win32":
+        # Detach from the Streamlit server: Blender gets its own process group
+        # and no inherited console handles, so it can't hold the app open.
+        kwargs["creationflags"] = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+    subprocess.Popen(
+        [b_bin, path],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        stdin=subprocess.DEVNULL,
+        **kwargs,
+    )
     return True
 
 

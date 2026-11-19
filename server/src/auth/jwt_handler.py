@@ -18,7 +18,8 @@ from typing import Dict, Any, Optional
 
 DEFAULT_SECRET = "isro-lunar-fusion-secret-key-3d-mapping-2026"
 DEFAULT_USERS_FILE = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "users.json"
+    # server/src/auth/ → four levels up = project root
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), "users.json"
 )
 
 

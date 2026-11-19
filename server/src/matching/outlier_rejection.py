@@ -230,9 +230,13 @@ def estimate_transform(
             floor_threshold=1.0,
         )
         n_after_mp = int(np.sum(inliers))
-        if n_after_mp < 4:
+        if n_after_mp < 4 or H is None:
+            # Degenerate geometry (e.g. strictly collinear matches) can make the
+            # refinement's findHomography return H=None while the mask survives.
+            # Never hand a None transform to the caller: restore the last valid model.
             logger.warning(
-                f"[SAFETY GUARD] Multi-pass refine reduced inliers to {n_after_mp}. "
+                f"[SAFETY GUARD] Multi-pass refine returned {n_after_mp} inliers "
+                f"with transform={'None' if H is None else 'valid'}. "
                 f"Restoring previous {int(np.sum(_inliers_before_mp))} inliers."
             )
             inliers = _inliers_before_mp
@@ -241,7 +245,10 @@ def estimate_transform(
             logger.info(f"Multi-pass refine: {n_after_mp} final inliers")
 
     # --- STEP 6: Non-rigid jitter modeling (TPS or Decoupled Pushbroom Spline) ---
-    if use_tps and np.sum(inliers) > 10:
+    # A thin-plate spline interpolates exactly through its control points. Below
+    # ~20 verified inliers that is overfitting rather than jitter correction,
+    # so keep the rigid homography instead.
+    if use_tps and np.sum(inliers) >= 20:
         jitter_mode = config.get('pipeline', {}).get('jitter_model', 'auto')
         is_strip = (span_y / max(span_x, 1.0) > 2.0) or (span_x / max(span_y, 1.0) > 2.0)
         

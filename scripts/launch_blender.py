@@ -13,17 +13,20 @@ import os
 import sys
 import shutil
 import subprocess
+from typing import Optional
 
 PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SCRIPT_PATH = os.path.join(PROJECT_DIR, "scripts", "blender_lunar_map.py")
 DEFAULT_PLY = os.path.join(PROJECT_DIR, "data", "outputs", "stereolunar_crater_3d.ply")
 FALLBACK_PLY = os.path.join(PROJECT_DIR, "data", "outputs", "chandrayaan2_terrain.ply")
 
-def find_blender_binary() -> str:
+def find_blender_binary() -> Optional[str]:
     """Locate the Blender executable across standard installation paths."""
-    # 1. User environment variable
-    if os.environ.get("BLENDER_BIN") and os.path.exists(os.environ["BLENDER_BIN"]):
-        return os.environ["BLENDER_BIN"]
+    # 1. User environment variable (BLENDER_PATH or BLENDER_BIN)
+    for env_key in ("BLENDER_PATH", "BLENDER_BIN"):
+        env_bin = os.environ.get(env_key, "").strip()
+        if env_bin and os.path.exists(env_bin):
+            return env_bin
 
     # 2. PATH
     which_blender = shutil.which("blender")
@@ -51,15 +54,20 @@ def find_blender_binary() -> str:
         if os.path.exists(p):
             return p
 
-    # 5. Windows standard paths
-    win_paths = [
-        r"C:\Program Files\Blender Foundation\Blender 4.2\blender.exe",
-        r"C:\Program Files\Blender Foundation\Blender 4.0\blender.exe",
-        r"C:\Program Files\Blender Foundation\Blender\blender.exe",
+    # 5. Windows: glob install roots so any version/major-drive matches
+    import glob
+    win_roots = [
+        r"D:\Blender*",
+        r"C:\Program Files\Blender Foundation\Blender*",
+        r"C:\Program Files\Blender*",
+        r"C:\Program Files (x86)\Blender Foundation\Blender*",
+        os.path.expandvars(r"%LOCALAPPDATA%\Blender Foundation\Blender*"),
     ]
-    for p in win_paths:
-        if os.path.exists(p):
-            return p
+    for root in win_roots:
+        for match in sorted(glob.glob(root), reverse=True):
+            exe = os.path.join(match, "blender.exe")
+            if os.path.exists(exe):
+                return exe
 
     return None
 
@@ -94,7 +102,18 @@ def launch_blender(ply_path: str = None, background: bool = False) -> subprocess
     print(f"   Script:  {SCRIPT_PATH}")
     print(f"   Terrain: {target_ply}")
 
-    proc = subprocess.Popen(cmd, env=env)
+    kwargs = {"close_fds": True}
+    if sys.platform == "win32" and not background:
+        # GUI mode: detach so Blender can't hold the calling process's console
+        kwargs["creationflags"] = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+
+    proc = subprocess.Popen(
+        cmd,
+        env=env,
+        stdout=subprocess.DEVNULL if not background else None,
+        stderr=subprocess.DEVNULL if not background else None,
+        **kwargs,
+    )
     return proc
 
 if __name__ == "__main__":

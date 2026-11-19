@@ -6,7 +6,11 @@ from src.features.classical_descriptors import phase_congruency_map
 from src.preprocess.shadow_normalization import _homomorphic_filter, normalize_illumination
 from src.matching.outlier_rejection import _multipass_refine
 from src.mosaic import MosaicEngine
-from ui.app import interactive_match_plot
+import sys
+import os
+sys.path.insert(0, os.path.abspath("client"))
+
+from components.visualizations import interactive_match_plot
 
 
 def test_subpixel_refine_non_square():
@@ -23,6 +27,22 @@ def test_subpixel_refine_non_square():
     assert isinstance(shift, tuple)
     assert len(shift) == 2
     assert response >= 0.0
+
+
+def test_crater_hybrid_narrow_strip():
+    """Aspect-preserved narrow strips (e.g. 512x61) must not crash the crater
+    fallback sampler (regression: uniform(60, w-60) with high < low)."""
+    import services
+
+    for shape in [(512, 61), (61, 512), (512, 512)]:
+        img = np.full(shape, 120, dtype=np.uint8)
+        craters = services.detect_craters_hybrid(img, conf=0.18, gsd=0.25)
+        assert len(craters) > 0, f"no craters produced for shape {shape}"
+        h_img, w_img = shape
+        for c in craters:
+            assert 0 <= c["cx"] < w_img
+            assert 0 <= c["cy"] < h_img
+            assert 0 < c["r"] <= 0.5 * min(w_img, h_img)
 
 
 def test_phase_congruency_constant_image():

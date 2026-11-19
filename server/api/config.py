@@ -18,6 +18,7 @@ ALLOWED_MATCHERS = {
     "tiny_roma", "ni_lfm", "ensemble", "fusion", "lunar_fusion", "omniroute", "omni",
     "yolo11", "yolo", "yolo11_crater",
     "superglue", "superpoint_superglue", "rift2", "asift", "akaze",
+    "apex",
 }
 MAX_UPLOAD_BYTES = int(os.getenv("MAX_UPLOAD_BYTES", str(512 * 1024 * 1024)))  # 512MB
 UPLOAD_CHUNK_BYTES = 1024 * 1024  # 1MB

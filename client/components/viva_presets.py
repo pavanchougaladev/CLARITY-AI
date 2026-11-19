@@ -12,7 +12,7 @@ try:
         KEY_SOURCE_PATH,
     )
 except ImportError:
-    from ui_clean.config import (
+    from config import (
         KEY_ACTIVE_PRESET,
         KEY_REF_PATH,
         KEY_REG_RESULT,
@@ -78,7 +78,7 @@ def render_viva_presets() -> None:
             try:
                 from services import load_preview_image
             except ImportError:
-                from ui_clean.services import load_preview_image
+                from services import load_preview_image
 
             img_s = load_preview_image(preset_data["src"])
             img_r = load_preview_image(preset_data["ref"])

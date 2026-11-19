@@ -14,6 +14,7 @@ Chandrayaan orbital imagery), then measures:
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "server"))
 
 import cv2
 import numpy as np

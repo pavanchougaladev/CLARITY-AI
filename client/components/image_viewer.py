@@ -24,16 +24,11 @@ def checkerboard(a: np.ndarray, b: np.ndarray, tile: int = 48) -> Image.Image:
     w = min(a.shape[1], b.shape[1])
     yy, xx = np.mgrid[0:h, 0:w]
     mask = ((yy // tile) + (xx // tile)) % 2 == 0
-    composite = np.where(mask, a[:h, :w], b[:h, :w]).astype("uint8")
-    img = Image.fromarray(composite).convert("RGB")
-    
-    # Overlay subtle grid lines along tile borders for visual clarity
-    draw = ImageDraw.Draw(img)
-    for y in range(0, h, tile):
-        draw.line([(0, y), (w, y)], fill=(56, 189, 248, 80), width=1)
-    for x in range(0, w, tile):
-        draw.line([(x, 0), (x, h)], fill=(56, 189, 248, 80), width=1)
-    return img
+    a_crop, b_crop = a[:h, :w], b[:h, :w]
+    if a_crop.ndim == 3:  # RGB: extend mask over the channel axis
+        mask = mask[..., None]
+    composite = np.where(mask, a_crop, b_crop).astype("uint8")
+    return Image.fromarray(composite).convert("RGB")
 
 def difference(a: np.ndarray, b: np.ndarray, amplify: int = 4) -> Image.Image:
     """Computes amplified absolute difference map between images."""
@@ -59,14 +54,19 @@ def match_lines(a: np.ndarray, b: np.ndarray, matches: list, max_lines: int = 14
     step = max(1, len(matches) // max_lines)
     sub_matches = matches[::step][:max_lines]
     
+    # Marker/line weight scales with the canvas so tie-points stay crisp
+    # on the hi-res (1024) working copy.
+    sw = max(1, round(max(w1, w2) / 512))
+    rad = 2.5 * sw
+    
     for (x1, y1), (x2, y2) in sub_matches:
         if 0 <= y1 < h and 0 <= x1 < w1 and 0 <= y2 < h and 0 <= x2 < w2:
             # Tie line
-            draw.line([(x1, y1), (x2 + w1, y2)], fill=(16, 185, 129, 140), width=1)
+            draw.line([(x1, y1), (x2 + w1, y2)], fill=(16, 185, 129, 140), width=sw)
             # Source point (Cyan)
-            draw.ellipse([x1 - 2.5, y1 - 2.5, x1 + 2.5, y1 + 2.5], fill=(56, 189, 248), outline=(255, 255, 255))
+            draw.ellipse([x1 - rad, y1 - rad, x1 + rad, y1 + rad], fill=(56, 189, 248), outline=(255, 255, 255), width=sw)
             # Reference point (Emerald)
-            draw.ellipse([x2 + w1 - 2.5, y2 - 2.5, x2 + w1 + 2.5, y2 + 2.5], fill=(16, 185, 129), outline=(255, 255, 255))
+            draw.ellipse([x2 + w1 - rad, y2 - rad, x2 + w1 + rad, y2 + rad], fill=(16, 185, 129), outline=(255, 255, 255), width=sw)
             
     return canvas
 

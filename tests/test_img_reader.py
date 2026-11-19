@@ -6,7 +6,9 @@ import pytest
 import numpy as np
 from src.pipeline import robust_read
 from src.ingest.pds4_parser import load_img_raster, find_matching_xml_label
-from ui.app import _find_archive_metadata, get_safe_preview
+import sys
+sys.path.insert(0, os.path.abspath("client"))
+from components.image_loader import _find_archive_metadata, get_safe_preview
 
 
 def test_find_matching_xml_label():

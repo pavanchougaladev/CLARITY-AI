@@ -47,6 +47,7 @@ from .preprocess.pyramid import build_gaussian_pyramid
 from .features.deep_matcher import LunarMatcher
 from .features.ensemble_matcher import EnsembleMatcher
 from .features.classical_descriptors import phase_congruency_map
+from .features.cross_sun_matcher import match_cross_sun_gradient, merge_correspondences
 from .features.root_sift import root_sift_descriptors
 from .features.tile_matcher import tile_match, create_sift_tile_matcher, create_deep_tile_matcher
 from .matching.outlier_rejection import estimate_transform
@@ -60,7 +61,11 @@ from .evaluate.metrics import (
     error_statistics, compute_holdout_validation, decompose_error_budget,
     evaluate_transform_gt_rmse,
 )
-from .evaluate.quality_gate import assess_quality, compute_spatial_entropy
+from .evaluate.quality_gate import (
+    assess_quality,
+    compute_spatial_entropy,
+    MIN_REQUIRED_INLIERS,
+)
 from .spice_utils import get_geometry_for_image
 from .config import get_config
 from .result_schema import RegistrationTelemetry
@@ -555,6 +560,7 @@ def _build_rejected_result(
         "fallback_code": None,
         "fusion_stats": None,
         "omniroute_stats": None,
+        "apex_stats": None,
         "telemetry": telemetry.to_dict(),
         "recovery_attempts": recovery_attempts or [],
         "provenance": provenance or {},
@@ -572,7 +578,7 @@ def choose_matcher_strategy(overlap_score: float, preferred_matcher: str = "loft
     matcher = (preferred_matcher or "sift").lower()
     if overlap_score < 0.12:
         return "sift", "low-overlap fallback: deep matcher rejected; using deterministic SIFT for weak lunar overlap"
-    if overlap_score < 0.25 and matcher in {"loftr", "lightglue", "roma", "roma_v2", "roma_omega", "tiny_roma", "ni_lfm", "fusion", "lunar_fusion", "ensemble"}:
+    if overlap_score < 0.25 and matcher in {"loftr", "lightglue", "roma", "roma_v2", "roma_omega", "tiny_roma", "ni_lfm", "fusion", "lunar_fusion", "ensemble", "apex"}:
         return "sift", "low-overlap guard: deep matching was disabled because pair overlap is below the safe threshold"
     return matcher, "deep match allowed: pair overlap is strong enough for AI-based feature matching"
 
@@ -588,7 +594,7 @@ def build_recovery_plan(matcher_type: str, max_dim: int, reason: str) -> dict:
     ai_matchers = {
         "loftr", "roma", "roma_v2", "roma_omega", "tiny_roma", "tiny_roma_v1",
         "ni_lfm", "lightglue", "disk_lightglue", "fusion", "lunar_fusion",
-        "ensemble", "omniroute", "omni"
+        "ensemble", "omniroute", "omni", "apex"
     }
 
     retry_matcher = current_matcher if current_matcher == "sift" else "sift"
@@ -662,7 +668,9 @@ def run_registration_pipeline(
     ref_path : str          Path to the reference image file.
     use_tps  : bool         Whether to use TPS for non-rigid jitter correction.
     max_dim  : int          Maximum image dimension for processing.
-    matcher_type : str      'loftr', 'lightglue', 'sift', 'roma', 'tiny_roma', or 'ensemble'.
+    matcher_type : str      'loftr', 'lightglue', 'sift', 'roma', 'tiny_roma', 'ensemble', or 'apex'
+                            ('apex' = 6-engine super-fusion: DISK+LightGlue + RoMa v2
+                             + ResShift + RootSIFT with MAGSAC++ outlier rejection).
     progress_callback       Optional callable(step: int, total: int, msg: str).
     geom_info: dict         Optional dict with illumination geometry angles.
     gsd_src  : float        Source image GSD in meters/pixel (optional).
@@ -992,9 +1000,12 @@ def run_registration_pipeline(
         match_ref = norm_ref
         scale_factor = 1.0
 
-    # --- Feature Matching: OmniRoute, LunarFusion, Ensemble, or Single Matcher Mode ---
+    # --- Feature Matching: OmniRoute, LunarFusion, Ensemble, APEX, or Single Matcher Mode ---
     fusion_stats = None
     omniroute_stats = None
+    apex_stats = None
+    cross_sun_stats = None
+    cross_sun_used = False
     if matcher_type.lower() in ["omniroute", "omni"]:
         _progress(4, total_steps, "Running OmniRoute AI Gateway (Parallel ThreadPool Dispatch & Fault Isolation)...")
         from .features.omniroute import LunarOmniRoute
@@ -1061,6 +1072,23 @@ def run_registration_pipeline(
             f"Ensemble Matching finished: {len(pts_src)} fused matches from {models_succeeded} "
             f"({stats.get('consensus_count', 0)} consensus-boosted)"
         )
+    elif matcher_type.lower() == "apex":
+        _progress(4, total_steps, "Running APEX 6-Engine Super-Fusion (DISK+LightGlue + RoMa v2 + ResShift + RootSIFT | MAGSAC++)...")
+        from .features.apex_matcher import ApexMatcher
+        apex_matcher = ApexMatcher(
+            confidence_threshold=0.2,
+            spatial_tolerance=3.0,
+            progress_callback=lambda msg: _progress(4, total_steps, f"APEX: {msg}"),
+        )
+        pts_src, pts_ref, confidences, apex_stats = apex_matcher.match_with_stats(
+            match_src, match_ref, config=config
+        )
+        models_str = " + ".join(m.upper() for m in apex_stats.get('engines_contributing', []))
+        method_used = f"APEX ({models_str} | MAGSAC++)" if models_str else "APEX"
+        logger.info(
+            f"APEX finished: {len(pts_src)} surviving matches from engines "
+            f"{apex_stats.get('engines_run')} (weights: {apex_stats.get('engine_weights')})"
+        )
     else:
         # --- Tile-based matching for better spatial coverage ---
         # Note: RoMa v2 is a dense global matcher that handles spatial coverage natively,
@@ -1114,6 +1142,31 @@ def run_registration_pipeline(
                 pts_src, pts_ref, confidences = sift_match(match_src, match_ref, config)
             method_used = "SIFT (Classical)" if matcher_type == "sift" else f"SIFT (Fallback from {matcher_type})"
             logger.info(f"SIFT found {len(pts_src)} matches")
+
+            # Cross-sun rescue: raw/wallis intensity descriptors collapse when
+            # the solar azimuth/elevation differs strongly between passes.
+            # Gradient-magnitude structure survives the illumination change.
+            if len(pts_src) < MIN_REQUIRED_INLIERS:
+                cs_src, cs_ref, cs_conf, cross_sun_stats = match_cross_sun_gradient(
+                    match_src,
+                    match_ref,
+                    matcher_fn=sift_match,
+                    config=config,
+                )
+                if len(cs_src) > len(pts_src):
+                    logger.info(
+                        "[cross-sun] Gradient RootSIFT recovered %d matches "
+                        "(intensity SIFT found %d).",
+                        len(cs_src), len(pts_src),
+                    )
+                    pts_src, pts_ref, confidences = cs_src, cs_ref, cs_conf
+                    method_used = f"{method_used} + CROSS-SUN (Gradient RootSIFT)"
+                    cross_sun_used = True
+                else:
+                    logger.info(
+                        "[cross-sun] Gradient RootSIFT found %d matches; keeping %d intensity matches.",
+                        len(cs_src), len(pts_src),
+                    )
         
     if use_pyramid and len(pts_src) > 0 and scale_factor > 1.0:
         pts_src = pts_src * scale_factor
@@ -1170,10 +1223,22 @@ def run_registration_pipeline(
             f"×{pts_src[:,1].max()-pts_src[:,1].min():.0f})px"
         )
 
-    transform, inlier_mask = estimate_transform(pts_src, pts_ref, use_tps=use_tps, config=config)
+    use_tps_eff = use_tps
+    if cross_sun_used:
+        span_y = float(np.ptp(pts_src[:, 1]))
+        span_x = float(np.ptp(pts_src[:, 0]))
+        use_tps_eff = bool(
+            use_tps
+            and (span_y / max(span_x, 1.0) > 2.0 or span_x / max(span_y, 1.0) > 2.0)
+        )
+    transform, inlier_mask = estimate_transform(pts_src, pts_ref, use_tps=use_tps_eff, config=config)
 
-    if inlier_mask is None or len(inlier_mask) == 0:
-        raise ValueError("Outlier rejection could not compute a geometric model.")
+    if inlier_mask is None:
+        inlier_mask = np.zeros(len(pts_src), dtype=bool)
+    else:
+        inlier_mask = np.asarray(inlier_mask, dtype=bool).ravel()
+        if len(inlier_mask) != len(pts_src):
+            inlier_mask = np.zeros(len(pts_src), dtype=bool)
 
     inliers_src = pts_src[inlier_mask]
     inliers_ref = pts_ref[inlier_mask]
@@ -1182,24 +1247,166 @@ def run_registration_pipeline(
     else:
         inlier_conf = np.ones(len(inliers_src), dtype=np.float32)
 
+    # --- Cross-sun rescue after the primary engine's own RANSAC ----------
+    # A deep/ensemble matcher can return many intensity candidates yet very
+    # few geometrically verified inliers on a pair with opposite illumination.
+    # When support is close to the Minimum Viable Registration floor, add
+    # illumination-invariant gradient correspondences and re-estimate.
+    if int(np.sum(inlier_mask)) < (MIN_REQUIRED_INLIERS + 5):
+        cs_src, cs_ref, cs_conf, cs_stats = match_cross_sun_gradient(
+            match_src,
+            match_ref,
+            matcher_fn=sift_match,
+            config=config,
+        )
+        if len(cs_src) >= 4:
+            merged_src, merged_ref, merged_conf = merge_correspondences(
+                [(pts_src, pts_ref, confidences), (cs_src, cs_ref, cs_conf)],
+                tolerance_px=2.0,
+            )
+            if len(merged_src) > len(pts_src):
+                span_y = float(np.ptp(merged_src[:, 1]))
+                span_x = float(np.ptp(merged_src[:, 0]))
+                is_elongated = (
+                    span_y / max(span_x, 1.0) > 2.0
+                    or span_x / max(span_y, 1.0) > 2.0
+                )
+                # TPS interpolates exactly through its control points; on a
+                # compact (non-strip) layout that is overfitting, not jitter
+                # correction. Keep the rigid homography there.
+                use_tps_cs = bool(use_tps and is_elongated)
+                tf_cs, mask_cs = estimate_transform(
+                    merged_src, merged_ref, use_tps=use_tps_cs, config=config
+                )
+                if mask_cs is not None:
+                    mask_cs = np.asarray(mask_cs, dtype=bool).ravel()
+                    if len(mask_cs) == len(merged_src) and int(mask_cs.sum()) > int(np.sum(inlier_mask)):
+                        logger.info(
+                            "[cross-sun] Rescued registration: %d -> %d inliers "
+                            "(gradient channels: %s)",
+                            int(np.sum(inlier_mask)), int(mask_cs.sum()),
+                            cs_stats.get("raw_matches_per_channel"),
+                        )
+                        pts_src, pts_ref, confidences = merged_src, merged_ref, merged_conf
+                        transform, inlier_mask = tf_cs, mask_cs
+                        inliers_src = pts_src[inlier_mask]
+                        inliers_ref = pts_ref[inlier_mask]
+                        inlier_conf = (
+                            confidences[inlier_mask]
+                            if len(confidences) == len(inlier_mask)
+                            else np.ones(len(inliers_src), dtype=np.float32)
+                        )
+                        method_used = f"{method_used} + CROSS-SUN (Gradient RootSIFT)"
+                        cross_sun_used = True
+                        cross_sun_stats = cs_stats
+                    else:
+                        logger.info(
+                            "[cross-sun] Gradient rescue did not improve verified support "
+                            "(%d vs %d inliers); keeping primary model.",
+                            int(mask_cs.sum()) if mask_cs is not None else 0,
+                            int(np.sum(inlier_mask)),
+                        )
+
     if len(inliers_src) < 4:
         n_found = len(pts_src)
-        raise ValueError(
-            f"Registration failed: all {n_found} feature matches were rejected as geometric outliers.\n"
-            f"Matcher used: {method_used}\n"
-            f"Possible causes:\n"
-            f"  • The two images do not overlap (different lunar coordinates)\n"
-            f"  • Extreme viewpoint/illumination difference between sensors\n"
-            f"  • Try: switch matcher to SIFT, or reduce 'Max Processing Dimension'\n"
-            f"  • Try: disable 'Coarse-to-Fine Pyramid' if enabled\n"
-            f"  • Try: upload images that share visible surface features"
+        logger.warning(
+            f"[GEOMETRIC REJECTION] All {n_found} raw matches were rejected as geometric "
+            f"outliers (matcher used: {method_used})."
         )
+        # --- GATE 5: AUTONOMOUS RECOVERY (SELF-HEALING LOOP) --------------
+        # A geometric rejection is a registration failure like any other; it
+        # must run the self-healing loop instead of aborting with a traceback.
+        if auto_recover and max_dim < 4096:
+            recovery_plan = build_recovery_plan(matcher_type, max_dim, "INSUFFICIENT_INLIERS")
+            logger.warning(
+                f"[GATE 5: AUTONOMOUS RECOVERY] Triggering Self-Healing Loop after geometric "
+                f"rejection: max_dim {max_dim} -> {recovery_plan['max_dim']}, "
+                f"matcher {matcher_type} -> {recovery_plan['matcher_type']}."
+            )
+            if progress_callback:
+                progress_callback(
+                    total_steps, total_steps,
+                    "⚡ Gate 5 Self-Healing: retrying with higher-resolution deterministic fallback...",
+                )
+            try:
+                recovery_kwargs = dict(kwargs)
+                recovery_kwargs["recovery_attempts"] = recovery_attempts + [{
+                    "matcher": recovery_plan["matcher_type"],
+                    "max_dim": recovery_plan["max_dim"],
+                    "status": "started",
+                }]
+                img_src_rec, img_ref_rec, results_rec = run_registration_pipeline(
+                    src_path=src_path,
+                    ref_path=ref_path,
+                    use_tps=use_tps,
+                    max_dim=recovery_plan["max_dim"],
+                    matcher_type=recovery_plan["matcher_type"],
+                    progress_callback=progress_callback,
+                    geom_info=geom_info,
+                    gsd_src=gsd_src,
+                    gsd_ref=gsd_ref,
+                    gt_pts_src=gt_pts_src,
+                    gt_pts_ref=gt_pts_ref,
+                    gt_points_in_original_coords=gt_points_in_original_coords,
+                    use_tile_matching=recovery_plan["use_tile_matching"],
+                    tile_grid=recovery_plan["tile_grid"],
+                    auto_recover=False,
+                    **recovery_kwargs,
+                )
+            except InterruptedError:
+                raise
+            except Exception as e_rec:
+                logger.warning(
+                    f"[GATE 5: AUTONOMOUS RECOVERY] Self-healing retry encountered: {e_rec}"
+                )
+            else:
+                if results_rec.get("quality", {}).get("passed", False):
+                    logger.info(
+                        "[GATE 5: AUTONOMOUS RECOVERY SUCCESS] Self-healing loop succeeded "
+                        f"via {recovery_plan['max_dim']}px {recovery_plan['matcher_type']} fallback."
+                    )
+                    results_rec["self_healed"] = True
+                    results_rec["initial_failure_reason"] = "GEOMETRIC_REJECTION"
+                    return img_src_rec, img_ref_rec, _maybe_export(results_rec, img_src_rec)
+                logger.warning(
+                    "[GATE 5: AUTONOMOUS RECOVERY] Retry completed but no valid "
+                    "registration was produced; returning Grade-F telemetry."
+                )
+
+        # No viable recovery: return an explicit, graded rejection (never a crash).
+        pipeline_times['outlier_rejection'] = time.time() - t_start
+        return img_src, img_ref, _maybe_export(_build_rejected_result(
+            img_src,
+            img_ref,
+            method_used,
+            n_found,
+            "INSUFFICIENT_INLIERS",
+            pipeline_times,
+            recovery_attempts,
+            provenance,
+            provenance_chain=prov_chain,
+        ), None)
     pipeline_times['outlier_rejection'] = time.time() - t_start
 
     # --- STAGE 6: Sub-pixel Refinement (iterative) ---
     _progress(6, total_steps, "Iterative sub-pixel refinement (upsampled DFT phase correlation)...")
     t_start = time.time()
-    if config.get('pipeline', {}).get('enable_subpixel', True) and len(inliers_src) > 0:
+    pre_sub_src = pre_sub_ref = pre_sub_conf = pre_sub_transform = None
+    if cross_sun_used:
+        logger.info(
+            "[cross-sun] Sub-pixel refinement on raw intensity patches skipped: "
+            "shadow polarity differs between passes, so ECC/phase correlation "
+            "would pull verified tie-points off the true geometry."
+        )
+    if (
+        config.get('pipeline', {}).get('enable_subpixel', True)
+        and len(inliers_src) > 0
+        and not cross_sun_used
+    ):
+        pre_sub_src = inliers_src.copy()
+        pre_sub_ref = inliers_ref.copy()
+        pre_sub_conf = inlier_conf.copy()
+        pre_sub_transform = transform
         speed_mode = config.get('pipeline', {}).get('speed_mode', 'balanced')
         use_multipatch = (speed_mode != 'fast')
         default_patch = 192 if use_multipatch else 128
@@ -1243,6 +1450,22 @@ def run_registration_pipeline(
             inliers_ref = inliers_ref[refined_mask]
             inlier_conf = inlier_conf[refined_mask] if len(inlier_conf) == len(refined_mask) else inlier_conf[:len(inliers_src)]
             logger.info(f"Post-subpixel re-estimation: {np.sum(refined_mask)} final inliers")
+
+        # Optional refinement must never destroy verified support. If the
+        # intensity-patch refinement loses a large fraction of the geometrically
+        # verified set (or falls below the MVR floor), keep the pre-refinement
+        # geometry instead of reporting a downgraded registration.
+        min_keep = max(MIN_REQUIRED_INLIERS, int(0.60 * len(pre_sub_src)))
+        if len(inliers_src) < min_keep:
+            logger.warning(
+                "[subpixel] Refinement reduced verified inliers from %d to %d "
+                "(< %d). Restoring the pre-refinement homography.",
+                len(pre_sub_src), len(inliers_src), min_keep,
+            )
+            inliers_src = pre_sub_src
+            inliers_ref = pre_sub_ref
+            inlier_conf = pre_sub_conf
+            transform = pre_sub_transform
 
     pipeline_times['subpixel_refinement'] = time.time() - t_start
 
@@ -1342,7 +1565,6 @@ def run_registration_pipeline(
                     gt_validation_status = "valid"
 
     # --- CRITICAL CONSTRAINT: STRICT INLIER FLOOR & 4-POINT TRAP GATE ---
-    MIN_REQUIRED_INLIERS = 15
     is_four_point_trap = (n_inliers <= 4)
     insufficient_inliers = (n_inliers < MIN_REQUIRED_INLIERS)
 
@@ -1508,6 +1730,7 @@ def run_registration_pipeline(
         'pts_ref': pts_ref,
         'inliers_src': inliers_src,
         'inliers_ref': inliers_ref,
+        'inliers_src_proj': inliers_src_proj,
         'confidences': inlier_conf,
         'transform': transform,
         'H_fallback': H_fallback,
@@ -1530,6 +1753,9 @@ def run_registration_pipeline(
         'fusion_stats': fusion_stats,
         'lunar_fusion_stats': fusion_stats,
         'omniroute_stats': omniroute_stats,
+        'apex_stats': apex_stats,
+        'cross_sun_used': cross_sun_used,
+        'cross_sun_stats': cross_sun_stats,
         'recovery_attempts': recovery_attempts,
         'illumination_disparity': sun_telem,
         'norm_src': norm_src,
@@ -1590,7 +1816,7 @@ def run_registration_pipeline(
                 )
                 results_rec['self_healed'] = True
                 results_rec['initial_failure_reason'] = quality['primary_reason']
-                for k in ('omniroute_stats', 'lunar_fusion_stats'):
+                for k in ('omniroute_stats', 'lunar_fusion_stats', 'apex_stats'):
                     if k in results and k not in results_rec:
                         results_rec[k] = results[k]
                 return img_src_rec, img_ref_rec, _maybe_export(results_rec, img_src_rec)

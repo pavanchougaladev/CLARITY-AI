@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 from config import PRESETS, GSD_REF, DEM_SPACING
-from components.header import sample_badge
+from components.header import sample_badge, active_pair_banner
 from components import image_viewer as iv
 import services
 
@@ -17,6 +17,7 @@ def render() -> None:
     preset = st.session_state.get("preset", list(PRESETS)[0])
     res = st.session_state.get("result")
     sample_badge(res)
+    active_pair_banner()
 
     # Ingest reference image from active session or preset
     images = st.session_state.get("images")

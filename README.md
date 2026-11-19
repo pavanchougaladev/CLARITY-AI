@@ -331,7 +331,7 @@ The CLI run's residual distribution on verified inliers: mean 0.519 px, median 0
 
 ### YOLO11n crater detector
 
-`runs/detect/runs/train_lunar/lunar_crater_yolo11/results.csv` — 10 epochs, batch 8, 640 px tiles, Apple-Silicon MPS backend.
+`runs/detect/runs/train_lunar/lunar_crater_yolo11/results.csv` — 10 epochs, batch 8, 640 px tiles, Apple-Silicon MPS backend. The CSV and `args.yaml` are mirrored in `docs/presentation/yolo11n_results.csv` because `runs/` is git-ignored.
 
 | Metric | Final epoch (10) | Best |
 |:---|---:|---:|

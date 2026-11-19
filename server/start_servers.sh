@@ -6,7 +6,9 @@
 
 set -e
 
-PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# server/ is this script's directory; the project root is its parent
+SERVER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SERVER_DIR")"
 cd "$PROJECT_DIR"
 
 # Locate Python binaries
@@ -24,8 +26,8 @@ else
     UVICORN_BIN="uvicorn"
 fi
 
-# Set library search paths
-export PYTHONPATH="$PROJECT_DIR:$HOME/Library/Python/3.9/lib/python/site-packages:$PYTHONPATH"
+# Set library search paths (server/ hosts the api/ and src/ backend packages)
+export PYTHONPATH="$SERVER_DIR:$PROJECT_DIR:$HOME/Library/Python/3.9/lib/python/site-packages:$PYTHONPATH"
 
 # Cleanup on exit or interrupt
 cleanup() {
@@ -73,7 +75,7 @@ done
 
 # 2. Start Streamlit Clean UI
 echo "🪐 [2/2] Starting Streamlit Clean UI on port 8501..."
-"$STREAMLIT_BIN" run ui_clean/app.py --server.port 8501 --server.headless true &
+"$STREAMLIT_BIN" run client/app.py --server.port 8501 --server.headless true &
 STREAMLIT_PID=$!
 
 echo "------------------------------------------------------------------"

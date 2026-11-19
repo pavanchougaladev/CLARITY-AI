@@ -51,6 +51,28 @@ def finite_float(value: Any) -> Optional[float]:
     return numeric_value if math.isfinite(numeric_value) else None
 
 
+def json_safe(value: Any) -> Any:
+    """
+    Recursively coerce a result payload into JSON-serialisable Python types.
+
+    Pipeline results can contain numpy scalars (e.g. np.float32 RMSE) and
+    arrays. Those are not encodable by the API layer and would surface as a
+    500 error when a job is polled, so every outward-facing payload passes
+    through this function.
+    """
+    if isinstance(value, dict):
+        return {str(k): json_safe(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple, set)):
+        return [json_safe(v) for v in value]
+    if value is None or isinstance(value, (str, bytes, bool, int, float)):
+        return value
+    if hasattr(value, "tolist"):
+        return json_safe(value.tolist())
+    if hasattr(value, "item"):
+        return json_safe(value.item())
+    return str(value)
+
+
 class RegistrationTelemetry(BaseModel):
     # ------------------------------------------------------------------ #
     # Legacy / backward-compatible fields                                  #

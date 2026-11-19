@@ -1,10 +1,11 @@
-"""Run with: streamlit run ui_clean/app.py"""
+"""Run with: streamlit run client/app.py"""
 import sys
 from pathlib import Path
 
 _UI_DIR = Path(__file__).resolve().parent
 _PROJECT_ROOT = _UI_DIR.parent
-for p in (str(_UI_DIR), str(_PROJECT_ROOT)):
+_SERVER_DIR = _PROJECT_ROOT / "server"
+for p in (str(_UI_DIR), str(_PROJECT_ROOT), str(_SERVER_DIR)):
     if p not in sys.path:
         sys.path.insert(0, p)
 

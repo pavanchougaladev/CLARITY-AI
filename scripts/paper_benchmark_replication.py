@@ -14,11 +14,20 @@ Algorithms: SIFT, ASIFT, AKAZE, RIFT2, SuperGlue
 
 import time
 import logging
+import os
+import sys
 from typing import Dict, List, Any, Optional, Tuple
 import numpy as np
 import pandas as pd
 
 logger = logging.getLogger("clarity.benchmark.paper_replication")
+
+# Backend packages (api/, src/) live under server/
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+if os.path.join(_PROJECT_ROOT, 'server') not in sys.path:
+    sys.path.insert(0, os.path.join(_PROJECT_ROOT, 'server'))
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Ground-Truth Paper Table 3 Reference Data

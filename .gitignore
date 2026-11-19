@@ -79,6 +79,8 @@ Thumbs.db
 data/
 data_storage/
 backbone/
+models/
+checkpoints/
 StereoPipeline*/
 reference2/
 *.qub
@@ -87,9 +89,52 @@ reference2/
 *.tiff
 *.pt
 *.pth
+*.onnx
+*.ckpt
+*.safetensors
+*.engine
 *.tar*
 *.zip
 *.bin
 !yolo11n.pt
+
+# Vendored StereoLunar sample data & model checkpoints (large binaries)
+client/3D implimentation/StereoLunar-main/quick_testing/
+client/3D implimentation/StereoLunar-main/**/datas/
+client/3D implimentation/StereoLunar-main/**/checkpoints/
+
+# Application runtime state (regenerated; never commit)
+users.json
+registration_history.json
+outputs/backend_jobs/
+.run/
+logs/
+
+# Rendered previews of superseded decks (regenerate with build_scifi_deck.py)
+docs/presentation/deck_preview/
+
+# YOLO / experiment training runs
+runs/
+weights/
+wandb/
+lightning_logs/
+
+# Local editor, agent & linter caches
+.vscode/
+.kilo/
+.freebuff/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+*.code-workspace
+
+# Sensitive local overrides
+.streamlit/secrets.toml
+.env.*.local
+
+# PyInstaller / packaging by-products
+*.manifest
+*.spec
+pip-wheel-metadata/
 
 

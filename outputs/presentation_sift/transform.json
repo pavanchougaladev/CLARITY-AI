@@ -1,0 +1,34 @@
+{
+  "_schema": "clarity3d_transform_v1",
+  "model": "HOMOGRAPHY_3x3",
+  "direction": "moving_to_fixed",
+  "coordinate_convention": "pixel_corner_origin",
+  "parameters": [
+    [
+      1.0030539037865194,
+      0.03933173541027295,
+      -58.27171993688328
+    ],
+    [
+      -0.033014301348082434,
+      1.006057637198656,
+      -119.36356961978406
+    ],
+    [
+      -4.717464032572454e-06,
+      3.024713286684643e-06,
+      1.0
+    ]
+  ],
+  "reference_grid": {},
+  "inversion": {
+    "available": true,
+    "method": "numpy.linalg.inv",
+    "note": "Inversion computed; source-pixel RMSE is exact."
+  },
+  "domain": {
+    "note": "Full image extent assumed"
+  },
+  "extra": {},
+  "written_utc": "2026-11-19T14:19:02Z"
+}

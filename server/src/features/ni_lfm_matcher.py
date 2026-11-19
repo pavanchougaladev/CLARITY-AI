@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 # Resolve the NI-LFM source tree (sibling of this file's project root)
 # ---------------------------------------------------------------------------
 _HERE = Path(__file__).resolve()
-_PROJECT_ROOT = _HERE.parent.parent.parent          # moon project ISRO PRO/
+_PROJECT_ROOT = _HERE.parent.parent.parent.parent   # project root (server/src/features/ → ../../..)
 _NILFM_ROOT   = _PROJECT_ROOT / "NASA-IBM-Lunar-Foundation-Model-main"
 
 if str(_NILFM_ROOT) not in sys.path:

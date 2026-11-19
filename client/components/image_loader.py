@@ -17,10 +17,9 @@ from PIL import Image
 from typing import Optional, Dict, List, Any
 import logging
 
-try:
-    from ui.config import WORKSPACE_ROOT, DATA_DIR
-except (ImportError, ValueError):
-    from ..config import WORKSPACE_ROOT, DATA_DIR
+# Workspace paths resolved relative to this module (client/components/ → project root)
+WORKSPACE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+DATA_DIR = os.path.abspath(os.path.join(WORKSPACE_ROOT, "data"))
 
 Image.MAX_IMAGE_PIXELS = None
 logger = logging.getLogger(__name__)

@@ -13,9 +13,9 @@ from typing import Optional, Any, Dict, List
 import streamlit as st
 
 try:
-    from ui.config import BACKEND_API_URL, DEFAULT_TIMEOUT_SECONDS
+    from config import BACKEND_API_URL, DEFAULT_TIMEOUT_SECONDS
 except (ImportError, ValueError):
-    from ..config import BACKEND_API_URL, DEFAULT_TIMEOUT_SECONDS
+    from .config import BACKEND_API_URL, DEFAULT_TIMEOUT_SECONDS
 
 
 def is_backend_online(backend_url: Optional[str] = None) -> bool:

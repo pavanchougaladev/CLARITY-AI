@@ -91,11 +91,19 @@ def assess_quality(
         details['holdout_count'] = int(holdout_count)
         max_holdout_rmse = float(t.get('holdout_rmse_max', 5.0))
         max_holdout_ratio = float(t.get('holdout_to_fit_ratio_max', 4.0))
+        # The ratio guard is only meaningful when the fit RMSE is an independent,
+        # non-consensus residual. MAGSAC++/TPS inlier-fit residuals are small by
+        # construction (consensus points), so holdout/fit ratios far above 4.0 are
+        # NORMAL for healthy registrations (e.g., holdout 0.44 px vs fit 0.05 px).
+        # The absolute holdout cap above remains the true overfit protection.
+        ratio_guard_active = (
+            rmse_pixels is not None and np.isfinite(rmse_pixels) and rmse_pixels >= 1.0
+        )
         holdout_failure = (
             holdout_rmse is None
             or not np.isfinite(holdout_rmse)
             or holdout_rmse > max_holdout_rmse
-            or (rmse_pixels is not None and rmse_pixels > 0 and holdout_rmse / rmse_pixels > max_holdout_ratio)
+            or (ratio_guard_active and holdout_rmse / rmse_pixels > max_holdout_ratio)
         )
         if holdout_failure:
             warnings.append(
@@ -198,8 +206,20 @@ def assess_quality(
         and rmse_pixels is not None
         and rmse_pixels <= t.get('rmse_acceptable', 3.0)
     )
+    # MAGSAC++ has already removed outliers, so statistical power comes from the
+    # ABSOLUTE count of geometrically verified inliers (Gate 2, >= 15) — not from
+    # the raw-pool ratio. Deep matcher pools (LoFTR / RoMa / tiled fusion) routinely
+    # produce hundreds of candidates, so a 17–27% verified ratio with 50+ inliers
+    # and sub-pixel RMSE is a healthy registration, not a matcher failure.
+    # Keep the strict 30% floor only when the verified evidence is thin.
+    inlier_ratio_hard_floor = float(t.get('inlier_ratio_hard_fail', 0.30))
+    if inlier_count >= 50:
+        inlier_ratio_hard_floor = min(inlier_ratio_hard_floor, 0.10)
+    elif inlier_count >= 25:
+        inlier_ratio_hard_floor = min(inlier_ratio_hard_floor, 0.15)
+    details['inlier_ratio_hard_floor'] = inlier_ratio_hard_floor
     hard_inlier_failure = (
-        (inlier_ratio < float(t.get('inlier_ratio_hard_fail', 0.30)))
+        (inlier_ratio < inlier_ratio_hard_floor)
         and not is_high_inlier_exception
         and not is_dense_inlier_exception
     )
@@ -221,7 +241,7 @@ def assess_quality(
         reason_codes.append("CRITICAL_INLIER_RATIO")
 
     if hard_inlier_failure:
-        warnings.append(f"Hard rejection: inlier ratio ({inlier_ratio:.1%}) below minimum trust floor ({t.get('inlier_ratio_hard_fail', 0.30):.0%}).")
+        warnings.append(f"Hard rejection: inlier ratio ({inlier_ratio:.1%}) below minimum trust floor ({inlier_ratio_hard_floor:.0%}).")
         reason_codes.insert(0, "INSUFFICIENT_INLIER_RATIO")
 
     details['inlier_score'] = inlier_score

@@ -95,7 +95,7 @@ class LunarMatcher:
                     logger.warning(f"RoMa v2 package initialization failed ({e_romav2}). Attempting fallback engine...")
                     import sys
                     from pathlib import Path
-                    repo_root = Path(__file__).resolve().parent.parent.parent
+                    repo_root = Path(__file__).resolve().parent.parent.parent.parent
                     omega_src = str(repo_root / "RoMa-Omega" / "src")
                     omega_tp = str(repo_root / "RoMa-Omega" / "third_party" / "vggtomega")
                     if omega_src not in sys.path:
@@ -169,6 +169,12 @@ class LunarMatcher:
                     confidence_threshold=self.confidence_threshold,
                 )
                 self._available = True
+            elif self.matcher_type == "apex":
+                from .apex_matcher import ApexMatcher
+                self.matcher = ApexMatcher(
+                    confidence_threshold=self.confidence_threshold,
+                )
+                self._available = True
             elif self.matcher_type in ["yolo11", "yolo", "yolo11_crater"]:
                 from .crater_matcher import YOLO11CraterMatcher
                 self.matcher = YOLO11CraterMatcher(
@@ -229,6 +235,11 @@ class LunarMatcher:
         """
         if not self._available:
             raise RuntimeError(f"{self.matcher_type} model is not available.")
+
+        # APEX orchestrates its own engines and sub-matcher preprocessing;
+        # it must receive the raw tensor, not the CLAHE-enhanced one.
+        if self.matcher_type == "apex":
+            return self._match_apex(img_src_tensor, img_ref_tensor)
 
         # Preprocess for better lunar terrain matching
         img_src_tensor = self._preprocess_lunar(img_src_tensor).to(self.device)
@@ -464,6 +475,13 @@ class LunarMatcher:
 
         else:
             raise NotImplementedError(f"Matcher type {self.matcher_type} not implemented.")
+
+    def _match_apex(self, img_src_tensor, img_ref_tensor):
+        """APEX 6-Engine Super-Fusion path (raw tensors, own preprocessing)."""
+        from .apex_matcher import ApexMatcher
+        src_u8 = ApexMatcher._to_gray_u8(img_src_tensor)
+        ref_u8 = ApexMatcher._to_gray_u8(img_ref_tensor)
+        return self.matcher.match(src_u8, ref_u8)
 
     def _mutual_consistency_check(
         self,

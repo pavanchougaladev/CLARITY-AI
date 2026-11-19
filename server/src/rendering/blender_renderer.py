@@ -42,8 +42,10 @@ _BLENDER_CANDIDATES = [
 
 
 def find_blender_binary() -> Optional[str]:
-    """Locate the Blender executable on the current system."""
-    env_path = os.environ.get("BLENDER_PATH", "").strip()
+    """Locate the Blender executable on the current system (macOS / Linux / Windows)."""
+    import glob
+
+    env_path = os.environ.get("BLENDER_PATH", "").strip() or os.environ.get("BLENDER_BIN", "").strip()
     if env_path and os.path.exists(env_path) and os.access(env_path, os.X_OK):
         return env_path
 
@@ -51,9 +53,24 @@ def find_blender_binary() -> Optional[str]:
     if which_path and os.path.exists(which_path):
         return which_path
 
-    for candidate in _BLENDER_CANDIDATES:
+    candidates = _BLENDER_CANDIDATES
+    for candidate in candidates:
         if os.path.exists(candidate) and os.access(candidate, os.X_OK):
             return candidate
+
+    # Windows: glob install roots so any version/major-drive matches
+    win_roots = [
+        r"D:\Blender*",
+        r"C:\Program Files\Blender Foundation\Blender*",
+        r"C:\Program Files\Blender*",
+        r"C:\Program Files (x86)\Blender Foundation\Blender*",
+        os.path.expandvars(r"%LOCALAPPDATA%\Blender Foundation\Blender*"),
+    ]
+    for root in win_roots:
+        for match in sorted(glob.glob(root), reverse=True):
+            exe = os.path.join(match, "blender.exe")
+            if os.path.exists(exe) and os.access(exe, os.X_OK):
+                return exe
 
     return None
 
@@ -398,6 +415,8 @@ print('BLENDER_RENDER_COMPLETE')
                     cmd,
                     capture_output=True,
                     text=True,
+                    encoding="utf-8",
+                    errors="replace",
                     timeout=90,
                 )
             except subprocess.TimeoutExpired:

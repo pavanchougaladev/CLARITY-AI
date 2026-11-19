@@ -45,7 +45,7 @@ def test_blender_render_synthetic_dem(tmp_path):
 
 def test_generate_lunar_normal_map():
     import sys
-    sys.path.insert(0, os.path.abspath("ui_clean"))
+    sys.path.insert(0, os.path.abspath("client"))
     import services
 
     z = np.full((32, 32), 10.0, dtype=np.float32)
@@ -64,7 +64,7 @@ def test_generate_lunar_normal_map():
 
 def test_services_run_blender_generation_pillars():
     import sys
-    sys.path.insert(0, os.path.abspath("ui_clean"))
+    sys.path.insert(0, os.path.abspath("client"))
     import services
 
     z = np.full((32, 32), 20.0, dtype=np.float32)

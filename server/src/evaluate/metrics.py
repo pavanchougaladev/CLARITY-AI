@@ -16,7 +16,7 @@ def rmse(pts_a: np.ndarray, pts_b: np.ndarray) -> float:
     """Calculate Root Mean Square Error between two sets of corresponding points."""
     if len(pts_a) == 0 or len(pts_b) == 0:
         return float('inf')
-    return np.sqrt(np.mean(np.sum((pts_a - pts_b) ** 2, axis=1)))
+    return float(np.sqrt(np.mean(np.sum((pts_a - pts_b) ** 2, axis=1))))
 
 
 def weighted_rmse(pts_a: np.ndarray, pts_b: np.ndarray, confidences: np.ndarray) -> float:

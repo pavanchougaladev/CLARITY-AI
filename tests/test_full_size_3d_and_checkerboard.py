@@ -8,7 +8,11 @@ import pytest
 import os
 import tempfile
 
-from ui.app import create_checkerboard, compute_seam_alignment_continuity, generate_dem_preview
+import sys
+import os
+sys.path.insert(0, os.path.abspath("client"))
+
+from components.visualizations import create_checkerboard, compute_seam_alignment_continuity, generate_dem_preview
 from src.features.dem_builder import (
     get_camera_model,
     export_point_cloud_ply,

@@ -17,8 +17,9 @@ import argparse
 import logging
 from typing import Dict, Any, List
 
-# Ensure repository root is on Python module path
+# Ensure repository root and backend packages (server/) are on Python module path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "server")))
 
 from src.batch import run_batch, discover_image_pairs
 from src.certify import certify_ablation_matrix

@@ -1,0 +1,89 @@
+{
+  "_schema": "clarity3d_quality_v1",
+  "pipeline_status": "VERIFIED \u2014 PASSED QUALITY GATE",
+  "quality_grade": "Grade B",
+  "passed": true,
+  "primary_reason": "QUALITY_PASSED",
+  "reason_codes": [],
+  "warnings": [
+    "Moderate inlier ratio (17.4%) on dense candidate pool (11361 candidates, 1973 verified inliers)"
+  ],
+  "accuracy_evidence": {
+    "class": "held_out",
+    "note": "Evidence class: held_out",
+    "fit_rmse_ref_px": 0.5616181492805481,
+    "fit_rmse_src_px": 1.386711479705057,
+    "holdout_rmse_ref_px": 0.6312784552574158,
+    "holdout_n": 592,
+    "holdout_rmse_note": "Withheld correspondence residuals \u2014 not used for fitting.",
+    "gt_rmse_ref_px": null,
+    "gt_status": "not_provided",
+    "gt_n": 0,
+    "gt_note": "No independently verified landmarks available; accuracy is unverified."
+  },
+  "match_counts": {
+    "raw_total": 11361,
+    "inlier_count": 1973,
+    "inlier_ratio": 0.17366429011530676,
+    "inlier_ratio_denominator": "all_putative_matches_before_ransac",
+    "holdout_n": 592,
+    "train_n": 1381
+  },
+  "error_statistics": {
+    "mean": 0.5189897418022156,
+    "median": 0.5040153861045837,
+    "std": 0.24831387400627136,
+    "min": 0.0160210020840168,
+    "max": 1.371440052986145,
+    "p90": 0.8458805680274963,
+    "p95": 0.9562040567398071,
+    "p99": 1.1321215629577637
+  },
+  "error_budget": {
+    "rigid_error_px": 5.1099,
+    "jitter_residual_px": 0.2843,
+    "relief_error_px": 0.2711,
+    "localization_noise_px": 0.2688,
+    "total_rmse_px": 0.633
+  },
+  "spatial_coverage": {
+    "occupied_grid_fraction": 0.703125,
+    "spatial_entropy": 0.8027082012914498,
+    "grid_note": "8x8 cell grid over valid image overlap",
+    "coverage_note": "Coverage measured over downscaled working image. Grid fraction <15% triggers SEVERE_MATCH_CLUSTERING gate."
+  },
+  "geometry_diagnostics": {
+    "symmetric_rmse_px": 0.004396361298859119,
+    "condition_number": 5.805884298410709,
+    "geometric_model_type": "HOMOGRAPHY",
+    "fallback_code": null
+  },
+  "gates": {
+    "GATE_1_4_POINT_TRAP": "PASSED",
+    "GATE_1_FOUR_POINT_TRAP": "PASSED",
+    "GATE_2_MIN_VIABLE_REGISTRATION": "PASSED",
+    "GATE_3_SPATIAL_DISTRIBUTION": "PASSED",
+    "GATE_3_SEVERE_MATCH_CLUSTERING": "PASSED",
+    "GATE_3_LOW_SPATIAL_ENTROPY": "PASSED",
+    "GATE_4_ZERO_HALLUCINATION": "ENFORCED (Strict 0% Weight on 0 Raw Matches)",
+    "GATE_5_AUTONOMOUS_RECOVERY": "NOMINAL"
+  },
+  "limitations": [
+    "Sub-pixel RMSE is evaluated in downscaled working coordinates. Original-sensor-pixel accuracy is reported as 'fit_rmse_src_px'.",
+    "Model-fitting residuals cannot establish geographic accuracy independently.",
+    "Without GCP/independent landmark data, accuracy is 'fit_only' class.",
+    "Spatial coverage is measured over the downscaled working image extent.",
+    "High inlier count does not compensate for clustered spatial distribution."
+  ],
+  "runtime": {
+    "read": 0.19716978073120117,
+    "downscale": 0.026026487350463867,
+    "preprocess": 14.377685546875,
+    "matching": 11.737998008728027,
+    "outlier_rejection": 1.6442992687225342,
+    "subpixel_refinement": 11.000792026519775,
+    "metrics_warping": 0.5628700256347656,
+    "quality_gate": 0.006368160247802734
+  },
+  "written_utc": "2026-11-19T14:19:02Z"
+}

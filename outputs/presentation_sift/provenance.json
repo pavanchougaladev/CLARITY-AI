@@ -1,0 +1,40 @@
+{
+  "_schema": "clarity3d_provenance_v1",
+  "pipeline_version": "1.0.0",
+  "python_version": "3.14.2",
+  "opencv_version": "5.0.0",
+  "torch_version": "2.15.0+cpu",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "device": "cpu",
+  "config_sha256": "eeb48d805a2817e7781ed86a7bdbe9fbc65f6ee0a6438131c7a743e71615fb96",
+  "inputs": {
+    "source": {
+      "name": "ch2_ohr_ncp_20260103T1005176450_b_brw_d18.png",
+      "size_bytes": 8180505,
+      "mtime_ns": 1794731519023743500
+    },
+    "reference": {
+      "name": "ch2_ohr_ncp_20260103T0609041371_b_brw_d18.png",
+      "size_bytes": 8630887,
+      "mtime_ns": 1794731518968590400
+    }
+  },
+  "pds4": {
+    "source": {},
+    "reference": {},
+    "geographic_validation": {
+      "status": "not_requested"
+    }
+  },
+  "fixed_image": {},
+  "moving_image": {},
+  "recovery_attempts": [
+    {
+      "matcher": "sift",
+      "max_dim": 1024,
+      "status": "passed"
+    }
+  ],
+  "method_used": "SIFT (Classical)",
+  "written_utc": "2026-11-19T14:19:02Z"
+}

@@ -14,7 +14,7 @@ import numpy as np
 
 from .state import jobs, cancellation_events, jobs_lock
 from src.pipeline import run_registration_pipeline
-from src.result_schema import RegistrationTelemetry
+from src.result_schema import RegistrationTelemetry, json_safe
 from src.registration.export import export_geotiff, export_asp_compatible_tiepoints
 from src.reporting.pdf_report import generate_pdf_report
 
@@ -125,6 +125,8 @@ def process_registration(
         clean_results["omniroute_stats"] = results.get("omniroute_stats")
         clean_results["lunar_fusion_stats"] = results.get("lunar_fusion_stats")
         clean_results["self_healed"] = bool(results.get("self_healed", False))
+        clean_results["cross_sun_used"] = bool(results.get("cross_sun_used", False))
+        clean_results["cross_sun_stats"] = json_safe(results.get("cross_sun_stats"))
 
         # Generate and save downloadable artifacts if job_dir is provided
         artifacts_manifest = {}
@@ -184,7 +186,7 @@ def process_registration(
 
         with jobs_lock:
             jobs[job_id]["status"] = "completed"
-            jobs[job_id]["results"] = clean_results
+            jobs[job_id]["results"] = json_safe(clean_results)
             jobs[job_id]["artifacts"] = list(artifacts_manifest.keys())
             jobs[job_id]["artifact_paths"] = artifacts_manifest
             jobs[job_id]["elapsed_seconds"] = round(time.time() - t0, 2)

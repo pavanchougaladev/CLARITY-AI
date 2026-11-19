@@ -171,11 +171,11 @@ if [ "$REBUILD_BACKEND" = true ] || [ ! -f "$BACKEND_EXEC" ]; then
     "$VENV_PYTHON" -m PyInstaller \
         --onedir \
         --name isro-backend \
-        --paths "$PROJECT_ROOT" \
+        --paths "$PROJECT_ROOT/server" \
         --add-data "configs:configs" \
         --collect-all api \
         --collect-all src \
-        "$PROJECT_ROOT/run_backend.py" \
+        "$PROJECT_ROOT/server/run_backend.py" \
         --noconfirm
     log_success "Backend executable built at: $BACKEND_EXEC"
 else
@@ -203,11 +203,11 @@ cp -R "$BACKEND_DIST_DIR/"* "$BIN_DIR/"
 
 # Copy Frontend and Application Source Code
 log_info "Installing Streamlit frontend, API modules, and configs..."
-cp -R "$PROJECT_ROOT/ui" "$APP_PAYLOAD_DIR/"
-cp -R "$PROJECT_ROOT/api" "$APP_PAYLOAD_DIR/"
-cp -R "$PROJECT_ROOT/src" "$APP_PAYLOAD_DIR/"
+cp -R "$PROJECT_ROOT/client" "$APP_PAYLOAD_DIR/"
+cp -R "$PROJECT_ROOT/server/api" "$APP_PAYLOAD_DIR/"
+cp -R "$PROJECT_ROOT/server/src" "$APP_PAYLOAD_DIR/"
 cp -R "$PROJECT_ROOT/configs" "$APP_PAYLOAD_DIR/"
-cp "$PROJECT_ROOT/run_backend.py" "$APP_PAYLOAD_DIR/"
+cp "$PROJECT_ROOT/server/run_backend.py" "$APP_PAYLOAD_DIR/"
 
 # Copy curated browse images and metadata (excluding 20+ GB raw sensor arrays)
 if [ -d "$PROJECT_ROOT/data" ]; then
@@ -358,7 +358,7 @@ fi
 echo "[2/3] Starting Streamlit Frontend on http://127.0.0.1:${FRONTEND_PORT}..."
 cd "$APP_DIR"
 PYTHONPATH="$APP_DIR:${PYTHONPATH:-}" "$PYTHON_BIN" -m streamlit run \
-    "$APP_DIR/ui/app.py" \
+    "$APP_DIR/client/app.py" \
     --server.port "$FRONTEND_PORT" \
     --server.address 127.0.0.1 \
     --server.headless true \
