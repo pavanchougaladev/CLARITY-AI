@@ -348,7 +348,7 @@ The CLI run's residual distribution on verified inliers: mean 0.519 px, median 0
 
 `pytest.ini` sets `pythonpath = . server`, so run it from the project root. 300 tests are collected across 49 modules.
 
-The deck in `docs/presentation/` is generated from these artefacts by `build_scifi_deck.py` and `make_scifi_charts.py`.
+The 15-slide deck at the repository root (`CLARITY-3D_Presentation_SciFi Final.pptx`) is generated from these artefacts by `docs/presentation/build_scifi_deck.py` and `docs/presentation/make_scifi_charts.py`.
 
 ---
 
