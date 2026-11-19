@@ -1001,10 +1001,8 @@ docs/presentation/make_scifi_charts.py
 | Field | Details |
 |---|---|
 | Project Name | CLARITY* — ISRO LunarFusion Co-Registration Suite |
-| Project ID | SIH26166 |
 | Domain | Space Technology / Planetary Image Processing |
 | Primary Application | Lunar Image Co-Registration |
-| Target Organization | Indian Space Research Organisation (ISRO) |
 | Primary Missions | Chandrayaan-1 and Chandrayaan-2 |
 | Processing Approach | Classical Computer Vision + Deep Learning |
 | Interface | Streamlit |
