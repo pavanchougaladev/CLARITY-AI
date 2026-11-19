@@ -1,6 +1,6 @@
 # 🌔 CLARITY* — ISRO LunarFusion Co-Registration Suite
 
-### SIH26166 | Deep Learning-Based Lunar Image Registration and Analysis
+### Deep Learning-Based Lunar Image Registration and Analysis
 
 **CLARITY\*** is an advanced lunar image co-registration and analysis platform designed to automate the alignment of heterogeneous lunar imagery acquired by India's Chandrayaan missions.
 
